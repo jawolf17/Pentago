@@ -26,19 +26,22 @@ public class Board {
 		if(row <= 2 && col <= 2){
 			a[row][col] = p;
 			update('a');
-			System.out.println(Arrays.deepToString(a));
+			System.out.println("a"+Arrays.deepToString(a));
 		}
 		else if(row <= 2 && col >= 3){
 			b[row][col-3] = p;
 			update('b');
+			System.out.println("b"+Arrays.deepToString(a));
 		}
 		else if(row >=3 && col <= 2){
 			c[row-3][col] = p;
 			update('c');
+			System.out.println("c"+Arrays.deepToString(a));
 		}
 		else if(row >=3 && col >= 3){
 			d[row-3][col-3] = p;
 			update('d');
+			System.out.println("d"+Arrays.deepToString(a));
 		}
 		
 		
@@ -47,44 +50,44 @@ public class Board {
 	public void rotate(char q,boolean r){
 		if(q=='a'){
 			if(r == false){
-				clockwise(a);
+				a = clockwise(a);
 			}
 			else if(r == true){
-				counterclockwise(a);
+				a = counterclockwise(a);
 			}
 			update('a');
 		}
 		else if(q =='b'){
 			if(r == false){
-				clockwise(b);
+				b = clockwise(b);
 			}
 			else if(r == true){
-				counterclockwise(b);
+				b = counterclockwise(b);
 			}
 			update('b');
 		}
 		else if(q == 'c'){
 			if(r == false){
-				clockwise(c);
+				c = clockwise(c);
 			}
 			else if(r == true){
-				counterclockwise(c);
+				c = counterclockwise(c);
 			}
 			update('c');
 		}
 		else if(q == 'd'){
 			if(r == false){
-				clockwise(d);
+				d = clockwise(d);
 			}
 			else if(r == true){
-				counterclockwise(d);
+				d = counterclockwise(d);
 			}
 			update('d');
 		}
 	}
 	//hard coded for now, didnt bother figuring out math behind it
-	private void clockwise(int[][] quad){
-		int[][] temp = new int[2][2];
+	private int[][] clockwise(int[][] quad){
+		int[][] temp = new int[3][3];
 		temp[0][0] = quad[2][0];
 		temp[0][1] = quad[1][0];
 		temp[0][2] = quad[0][0];
@@ -94,9 +97,10 @@ public class Board {
 		temp[2][0] = quad[2][2];
 		temp[2][1] = quad[1][2];
 		temp[2][2] = quad[0][2];
+		return temp;
 	}
-	private void counterclockwise(int[][] quad){
-		int[][] temp = new int[2][2];
+	private int[][] counterclockwise(int[][] quad){
+		int[][] temp = new int[3][3];
 		temp[2][0] = quad[0][0];
 		temp[1][0] = quad[0][1];
 		temp[0][0] = quad[0][2];
@@ -106,6 +110,7 @@ public class Board {
 		temp[2][2] = quad[2][0];
 		temp[1][2] = quad[2][1];
 		temp[0][2] = quad[2][2];
+		return temp;
 		
 	}
 	public boolean isOccupied(int row, int col){
@@ -236,14 +241,14 @@ public class Board {
 			case 'c':
 				for(int u=0;u<c[0].length;u++){
 					for(int w = 0;w<c.length;w++){
-						bigBoard[u+3][w] = b[u][w];
+						bigBoard[u+3][w] = c[u][w];
 					}
 				}
 				break;
 			case 'd':
 				for(int e=0;e<d[0].length;e++){
 					for(int r = 0;r<d.length;r++){
-						bigBoard[e+3][r+3] = b[e][r];
+						bigBoard[e+3][r+3] = d[e][r];
 					}
 				}
 				break;
