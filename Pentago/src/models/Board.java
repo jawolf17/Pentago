@@ -112,7 +112,83 @@ public class Board {
 			return true;
 		}
 	}
+	//will only need to check forwards, down, down right, and down left.
 	public boolean isWon(){
+		int org = 0;
+		for(int i=0;i<bigBoad[0].length;i++){
+			for(int j=0;j<bigBoad.length;j++){
+				if(bigBoard[i][j] == 1 || bigBoard[i][j] == 2){
+					org = bigBoard[i][j];
+					int next = i+1;
+					int next3 = j+1;
+					int next4 = j-1;
+					int next2 = i-1;
+					if(next<6 && bigBoard[next][j] == org){
+						next = next +1;
+						if(next<6 && bigBoard[next][j] == org){
+							next = next +1;
+							if(next<6 && bigBoard[next][j] == org){
+								next = next +1;
+								if(next<6 && bigBoard[next][j] == org){
+									return true;
+								}
+							}
+						}
+					}
+					if(next4>0 && bigBoard[i][next4] == org){
+						next4 = next4-1;
+						if(next4>0 && bigBoard[i][next4] == org){
+							next4 = next4-1;
+							if(next4>0 && bigBoard[i][next4] == org){
+								next4 = next4-1;
+								if(next4>0 && bigBoard[i][next4] == org){
+									return true;
+								}
+							}
+						}
+					}
+					next = i+1;
+					next3 = j+1;
+					next4 = j-1;
+					next2 = i-1;
+					if((next3<6 && next <6) && bigBoard[next][next3] == org){
+						next3 = next3 +1;
+						next = next +1;
+						if((next3<6 && next <6) && bigBoard[next][next3] == org){
+							next3 = next3 +1;
+							next = next +1;
+							if((next3<6 && next <6) && bigBoard[next][next3] == org){
+								next3 = next3 +1;
+								next = next +1;
+								if((next3<6 && next <6) && bigBoard[next][next3] == org){
+									return true;
+								}
+							}
+						}
+					}
+					next = i+1;
+					if((next4>0 && next <6) && bigBoard[next][next4] == org){
+						next4 = next4 -1;
+						next = next +1;
+						if((next4>0 && next <6) && bigBoard[next][next4] == org){
+							next4 = next4 -1;
+							next = next +1;
+							if((next4>0 && next <6) && bigBoard[next][next4] == org){
+								next4 = next4 -1;
+								next = next +1;
+								if((next4>0 && next <6) && bigBoard[next][next4] == org){
+									return true;
+								}
+							}
+						}
+					}
+					
+					
+				
+					
+				}
+			}
+		}
 		return false;
 	}
 	private void update(){
