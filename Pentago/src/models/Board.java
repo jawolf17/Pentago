@@ -1,5 +1,7 @@
 package models;
 
+import java.util.Arrays;
+
 public class Board {
 	int[][] bigBoard;
 	int[][] a;
@@ -8,71 +10,73 @@ public class Board {
 	int[][] d;
 	
 	public Board() {
-		bigBoard = new int[5][5];
-		a = new int[2][2];
-		b = new int[2][2];
-		c = new int[2][2];
-		d = new int[2][2];
+		bigBoard = new int[6][6];
+		a = new int[3][3];
+		b = new int[3][3];
+		c = new int[3][3];
+		d = new int[3][3];
 		
 	}
-	public boolean place(int row, int col,int c){
-		if((row >5 || col > 5) || !(c<=0 && c>3){
+	public boolean place(int row, int col,int p){
+		if((row > 5 || col > 5) || (p<=0 || p>3)){
+			System.out.println(Arrays.deepToString(a));
 			return false;
 		}
 		 
 		if(row <= 2 && col <= 2){
-			a[row][col] = c;
+			a[row][col] = p;
 			update('a');
+			System.out.println(Arrays.deepToString(a));
 		}
 		else if(row <= 2 && col >= 3){
-			b[row][col-3] = c;
+			b[row][col-3] = p;
 			update('b');
 		}
 		else if(row >=3 && col <= 2){
-			c[row-3][col] = c;
+			c[row-3][col] = p;
 			update('c');
 		}
 		else if(row >=3 && col >= 3){
-			d[row-3][col-3] = c;
+			d[row-3][col-3] = p;
 			update('d');
 		}
 		
 		
 		return true;
 	}
-	public void rotate(char q,boolean d){
+	public void rotate(char q,boolean r){
 		if(q=='a'){
-			if(d == false){
+			if(r == false){
 				clockwise(a);
 			}
-			else if(d == true){
+			else if(r == true){
 				counterclockwise(a);
 			}
 			update('a');
 		}
 		else if(q =='b'){
-			if(d == false){
+			if(r == false){
 				clockwise(b);
 			}
-			else if(d == true){
+			else if(r == true){
 				counterclockwise(b);
 			}
 			update('b');
 		}
 		else if(q == 'c'){
-			if(d == false){
+			if(r == false){
 				clockwise(c);
 			}
-			else if(d == true){
+			else if(r == true){
 				counterclockwise(c);
 			}
 			update('c');
 		}
 		else if(q == 'd'){
-			if(d == false){
+			if(r == false){
 				clockwise(d);
 			}
-			else if(d == true){
+			else if(r == true){
 				counterclockwise(d);
 			}
 			update('d');
@@ -105,7 +109,7 @@ public class Board {
 		
 	}
 	public boolean isOccupied(int row, int col){
-		if(bigBoad[row][col] == 0){
+		if(bigBoard[row][col] == 0){
 			return false;
 		}
 		else{
@@ -115,33 +119,32 @@ public class Board {
 	//will only need to check forwards, down, down right, and down left.
 	public boolean isWon(){
 		int org = 0;
-		for(int i=0;i<bigBoad[0].length;i++){
-			for(int j=0;j<bigBoad.length;j++){
+		for(int i=0;i<bigBoard[0].length;i++){
+			for(int j=0;j<bigBoard.length;j++){
 				if(bigBoard[i][j] == 1 || bigBoard[i][j] == 2){
 					org = bigBoard[i][j];
 					int next = i+1;
 					int next3 = j+1;
 					int next4 = j-1;
-					int next2 = i-1;
-					if(next<6 && bigBoard[next][j] == org){
-						next = next +1;
-						if(next<6 && bigBoard[next][j] == org){
-							next = next +1;
-							if(next<6 && bigBoard[next][j] == org){
-								next = next +1;
-								if(next<6 && bigBoard[next][j] == org){
+					if(next3<6 && bigBoard[i][next3] == org){
+						next3 = next3 +1;
+						if(next3<6 && bigBoard[i][next3] == org){
+							next3 = next3 +1;
+							if(next3<6 && bigBoard[i][next3] == org){
+								next3 = next3 +1;
+								if(next3<6 && bigBoard[i][next3] == org){
 									return true;
 								}
 							}
 						}
 					}
-					if(next4>0 && bigBoard[i][next4] == org){
-						next4 = next4-1;
-						if(next4>0 && bigBoard[i][next4] == org){
-							next4 = next4-1;
-							if(next4>0 && bigBoard[i][next4] == org){
-								next4 = next4-1;
-								if(next4>0 && bigBoard[i][next4] == org){
+					if(next<6 && bigBoard[next][j] == org){
+						next = next+1;
+						if(next<6 && bigBoard[next][j] == org){
+							next = next+1;
+							if(next<6 && bigBoard[next][j] == org){
+								next = next+1;
+								if(next<6 && bigBoard[next][j] == org){
 									return true;
 								}
 							}
@@ -150,7 +153,6 @@ public class Board {
 					next = i+1;
 					next3 = j+1;
 					next4 = j-1;
-					next2 = i-1;
 					if((next3<6 && next <6) && bigBoard[next][next3] == org){
 						next3 = next3 +1;
 						next = next +1;
@@ -189,6 +191,7 @@ public class Board {
 				}
 			}
 		}
+		System.out.println(Arrays.deepToString(bigBoard));
 		return false;
 	}
 	private void update(){
@@ -231,9 +234,9 @@ public class Board {
 				}
 				break;
 			case 'c':
-				for(int q=0;q<c[0].length;q++){
+				for(int u=0;u<c[0].length;u++){
 					for(int w = 0;w<c.length;w++){
-						bigBoard[q+3][w] = b[q][w];
+						bigBoard[u+3][w] = b[u][w];
 					}
 				}
 				break;
