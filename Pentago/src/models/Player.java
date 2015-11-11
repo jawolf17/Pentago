@@ -1,10 +1,10 @@
 package models;
 
 public class Player {
-	String color;
+	int color;
 	String name;
 	boolean isTurn;
-	public Player(String c,String n){
+	public Player(int c,String n){
 		color = c;
 		name = n;
 		isTurn = false;
