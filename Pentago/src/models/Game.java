@@ -17,7 +17,7 @@ public class Game {
 	public Game(String name1, String name2, Controller c){
 		_p1 = new Player(0,name1);
 		if(name2.equals("CPU")){
-			//TODO: add constructor for non-human player
+			//TODO: add constructor for non-human player, for now just creates another human
 			_p2 = new Player(1,name2);
 		}
 		else{
