@@ -30,11 +30,13 @@ class ButtonFrame extends JFrame {
       setSize(900, 900);
       ButtonPanel panel = new ButtonPanel(con);
       panel.add(new JLabel("Player 1:"));
-      panel.add(new JLabel("Player 2:"));
+      
       PlayerOne = new JTextField(40);
+      
       PlayerTwo = new JTextField(40);
       cpu = new JRadioButton("CPU");
       panel.add(PlayerOne);
+      panel.add(new JLabel("Player 2:"));
       panel.add(PlayerTwo);
       panel.add(cpu);
       cpu.addActionListener(new ActionListener() {
