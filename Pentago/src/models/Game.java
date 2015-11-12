@@ -14,12 +14,13 @@ public class Game {
 	 * Initializes players and board.
 	 * Sets current player to p1.
 	 */
-	public Game(String name1, String name2){
+	public Game(String name1, String name2, Controller c){
 		_p1 = new Player(0,name1);
 		_p2 = new Player(1,name2);
 		_currentp = _p1;
+		_controller = c;
 		_board = new Board(_controller);
-		_controller = new Controller(_board);
+		_controller.setBoard(_board);
 	}
 	
 	/**
