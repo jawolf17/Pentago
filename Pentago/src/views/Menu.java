@@ -4,7 +4,7 @@ import java.awt.*;
 import java.awt.event.ActionListener;
 import javax.swing.*;
 
-import models.Controller;
+import controller.Controller;
 
 import java.awt.event.ActionEvent;
 
