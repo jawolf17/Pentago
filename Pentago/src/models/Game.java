@@ -18,6 +18,7 @@ public class Game {
 		_p1 = new Player(0,name1);
 		if(name2.equals("CPU")){
 			//TODO: add constructor for non-human player
+			_p2 = new Player(1,name2);
 		}
 		else{
 			_p2 = new Player(1,name2);
