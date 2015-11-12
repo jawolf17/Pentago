@@ -28,7 +28,7 @@ class ButtonFrame extends JFrame {
 
       setTitle("Pentago");
       setSize(900, 900);
-      ButtonPanel panel = new ButtonPanel(con);
+      ButtonPanel panel = new ButtonPanel(this,con);
       panel.add(new JLabel("Player 1:"));
       
       PlayerOne = new JTextField(40);
@@ -59,7 +59,7 @@ class ButtonFrame extends JFrame {
    class ButtonPanel extends JPanel implements ActionListener {
       private Component frame;
 
-      public ButtonPanel(Controller con) {
+      public ButtonPanel(Frame f, Controller con) {
 
          final JButton b2 = new JButton("Submit");
          add(b2, BorderLayout.SOUTH);
@@ -69,6 +69,7 @@ class ButtonFrame extends JFrame {
                // !! ButtonFrame bf = new ButtonFrame();
                if ("Submit".equals(e.getActionCommand())) {
             	   con.createGame(getPlayerOneName(),getPlayerTwoName());
+            	   f.dispose();
                   
                }
             }

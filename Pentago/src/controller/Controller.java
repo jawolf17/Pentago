@@ -35,6 +35,8 @@ public class Controller {
 	 */
 	public void createGame(String name1, String name2){
 		new models.Game(name1,name2,this);
+		new Gui(this);
+
 	}
 	
 	//Getters / Setters

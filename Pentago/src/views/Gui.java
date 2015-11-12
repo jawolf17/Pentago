@@ -1,5 +1,6 @@
 package views;
 
+import controller.Controller;
 import java.awt.Color;
 import java.awt.Frame;
 import java.awt.Graphics;
@@ -13,17 +14,14 @@ import java.awt.geom.GeneralPath;
 import javax.swing.JButton;
 import javax.swing.JTextField;
 
-import models.Controller;
-
+@SuppressWarnings("unused")
 public class Gui extends Frame{
-		private Controller con;
-		public static void main(String[] args){
-			new Gui();
-		}
-		public Gui(/*Controller c*/) {
+		private Controller _cont;
+	
+		public Gui(Controller c) {
 			     //Title our frame.
 			    super("Pentago");
-			    /*con = c;*/
+			    _cont =c;
 			    setSize(400,300);
 			    setVisible(true);
 			    addWindowListener(new WindowAdapter()
