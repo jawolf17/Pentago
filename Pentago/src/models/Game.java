@@ -28,6 +28,7 @@ public class Game {
 		_controller = c;
 		_board = new Board(_controller);
 		_controller.setBoard(_board);
+		
 	}
 	
 	/**

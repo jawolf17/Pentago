@@ -1,6 +1,8 @@
 package controller;
 
 import models.Board;
+import views.Menu;
+import views.Gui;
 
 public class Controller {
 	private Board b;
@@ -23,7 +25,7 @@ public class Controller {
 	 * Calls on the GUI to launch the menu for player selection.
 	 */
 	public void launchMenu(){
-		//TODO: Add method call
+		new Menu(this);
 	}
 	
 	/**
