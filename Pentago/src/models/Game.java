@@ -1,21 +1,33 @@
 package models;
 
+import controller.Controller;
+
 public class Game {
 	private Player _p1;
 	private Player _p2;
 	private Player _currentp;
 	private Board _board;
+	private Controller _controller;
 	
 	/**
 	 * Constructor for the Game class.
 	 * Initializes players and board.
 	 * Sets current player to p1.
 	 */
-	public Game(String name1, String name2){
+	public Game(String name1, String name2, Controller c){
 		_p1 = new Player(0,name1);
-		_p2 = new Player(1,name2);
+		if(name2.equals("CPU")){
+			//TODO: add constructor for non-human player
+			_p2 = new Player(1,name2);
+		}
+		else{
+			_p2 = new Player(1,name2);
+		}
+	
 		_currentp = _p1;
-		_board = new Board();
+		_controller = c;
+		_board = new Board(_controller);
+		_controller.setBoard(_board);
 	}
 	
 	/**
@@ -29,14 +41,16 @@ public class Game {
 		//May need more body here as project continues
 		
 		while(!_board.isWon()){
-			_currentp.turn();
-			
+			//Needs to give control to GUI...somehow
+
+			_currentp.setTurn(false);
 			if(_currentp.equals(_p1)){
 				_currentp = _p2;
 			}
 			else if(_currentp.equals(_p2)){
 				_currentp=_p1;
 			}
+			_currentp.setTurn(true);
 		}
 		
 	}
