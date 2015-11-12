@@ -5,6 +5,7 @@ public class Game {
 	private Player _p2;
 	private Player _currentp;
 	private Board _board;
+	private Controller _controller;
 	
 	/**
 	 * Constructor for the Game class.
@@ -15,7 +16,8 @@ public class Game {
 		_p1 = new Player(0,name1);
 		_p2 = new Player(1,name2);
 		_currentp = _p1;
-		_board = new Board();
+		_board = new Board(_controller);
+		_controller = new Controller(_board);
 	}
 	
 	/**
@@ -29,14 +31,16 @@ public class Game {
 		//May need more body here as project continues
 		
 		while(!_board.isWon()){
-			_currentp.turn();
-			
+			//Needs to give control to GUI...somehow
+
+			_currentp.setTurn(false);
 			if(_currentp.equals(_p1)){
 				_currentp = _p2;
 			}
 			else if(_currentp.equals(_p2)){
 				_currentp=_p1;
 			}
+			_currentp.setTurn(true);
 		}
 		
 	}
