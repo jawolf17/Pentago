@@ -1,4 +1,7 @@
-package models;
+package controller;
+
+import models.Board;
+
 public class Controller {
 	private Board b;
 	public Controller(Board board){

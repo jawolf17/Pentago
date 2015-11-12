@@ -1,5 +1,7 @@
 package models;
 
+import controller.Controller;
+
 public class Game {
 	private Player _p1;
 	private Player _p2;

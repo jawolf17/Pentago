@@ -2,6 +2,8 @@ package models;
 
 import java.util.Arrays;
 
+import controller.Controller;
+
 public class Board {
 	private int[][] bigBoard;
 	private int[][] a;
