@@ -1,9 +1,9 @@
 package models;
 
 public class Player {
-	int color;
-	String name;
-	boolean isTurn;
+	private int color;
+	private String name;
+	private boolean isTurn;
 	public Player(int c,String n){
 		color = c;
 		name = n;
@@ -11,6 +11,5 @@ public class Player {
 	}
 	public void turn(){
 		isTurn = true;
-		
 	}
 }

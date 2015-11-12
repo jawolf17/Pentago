@@ -3,20 +3,27 @@ package models;
 import java.util.Arrays;
 
 public class Board {
-	int[][] bigBoard;
-	int[][] a;
-	int[][] b;
-	int[][] c;
-	int[][] d;
+	private int[][] bigBoard;
+	private int[][] a;
+	private int[][] b;
+	private int[][] c;
+	private int[][] d;
+	private Controller control;
 	
-	public Board() {
+	public Board(Controller controller) {
 		bigBoard = new int[6][6];
 		a = new int[3][3];
 		b = new int[3][3];
 		c = new int[3][3];
 		d = new int[3][3];
+		control = controller;
 		
 	}
+	/**
+	 * Used to place pieces on the board.
+	 * @param int row, int col, int p(0,1,or 2 1 representing white, 2 representing black)
+	 * @return boolean
+	 */
 	public boolean place(int row, int col,int p){
 		if((row > 5 || col > 5) || (p<=0 || p>3)){
 			System.out.println(Arrays.deepToString(a));
@@ -47,6 +54,12 @@ public class Board {
 		
 		return true;
 	}
+	/**
+	 * rotate is used to rotate one quadrant a quarter turn.
+	 * 
+	 * @param char q(representing quadrant) boolean r(true is ccw, false is cw)
+	 * @return none
+	 */
 	public void rotate(char q,boolean r){
 		if(q=='a'){
 			if(r == false){
@@ -113,6 +126,12 @@ public class Board {
 		return temp;
 		
 	}
+	/**
+	 * isOccupied returns true if the space given has a token in it already.
+	 * 
+	 * @param int row int col
+	 * @return boolean
+	 */
 	public boolean isOccupied(int row, int col){
 		if(bigBoard[row][col] == 0){
 			return false;
@@ -121,7 +140,12 @@ public class Board {
 			return true;
 		}
 	}
-	//will only need to check forwards, down, down right, and down left.
+	/**
+	 * isWon returns true is there is a winning grouping of 5 on the board.
+	 * 
+	 * @param none
+	 * @return boolean
+	 */
 	public boolean isWon(){
 		int org = 0;
 		for(int i=0;i<bigBoard[0].length;i++){
@@ -220,6 +244,7 @@ public class Board {
 				bigBoard[e+3][r+3] = b[e][r];
 			}
 		}
+		control.update();
 		
 	}
 	private void update(char q){
@@ -253,6 +278,16 @@ public class Board {
 				}
 				break;
 		}
+		control.update();
+	}
+	/**
+	 * getBigBoard
+	 * 
+	 * @param none
+	 * @return int[][]
+	 */
+	public int[][] getBigBoard(){
+		return bigBoard;
 	}
 	
 
