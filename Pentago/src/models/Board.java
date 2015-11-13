@@ -28,29 +28,24 @@ public class Board {
 	 */
 	public boolean place(int row, int col,int p){
 		if((row > 5 || col > 5) || (p<=0 || p>3)){
-			System.out.println(Arrays.deepToString(a));
 			return false;
 		}
 		 
 		if(row <= 2 && col <= 2){
 			a[row][col] = p;
 			update('a');
-			System.out.println("a"+Arrays.deepToString(a));
 		}
 		else if(row <= 2 && col >= 3){
 			b[row][col-3] = p;
 			update('b');
-			System.out.println("b"+Arrays.deepToString(a));
 		}
 		else if(row >=3 && col <= 2){
 			c[row-3][col] = p;
 			update('c');
-			System.out.println("c"+Arrays.deepToString(a));
 		}
 		else if(row >=3 && col >= 3){
 			d[row-3][col-3] = p;
 			update('d');
-			System.out.println("d"+Arrays.deepToString(a));
 		}
 		
 		
@@ -222,7 +217,6 @@ public class Board {
 				}
 			}
 		}
-		System.out.println(Arrays.deepToString(bigBoard));
 		return false;
 	}
 	private void update(){

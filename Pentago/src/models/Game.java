@@ -15,13 +15,13 @@ public class Game {
 	 * Sets current player to p1.
 	 */
 	public Game(String name1, String name2, Controller c){
-		_p1 = new Player(0,name1);
+		_p1 = new Player(1,name1);
 		if(name2.equals("CPU")){
 			//TODO: add constructor for non-human player, for now just creates another human
-			_p2 = new Player(1,name2);
+			_p2 = new Player(2,name2);
 		}
 		else{
-			_p2 = new Player(1,name2);
+			_p2 = new Player(2,name2);
 		}
 	
 		_currentp = _p1;
@@ -38,10 +38,10 @@ public class Game {
 	 * @param none
 	 * @return none
 	 */
-	public void play(){
+	public void upCheck(){
 		//May need more body here as project continues
 		
-		while(!_board.isWon()){
+		if(!_board.isWon()){
 			//Needs to give control to GUI...somehow
 
 			_currentp.setTurn(false);
@@ -52,6 +52,9 @@ public class Game {
 				_currentp=_p1;
 			}
 			_currentp.setTurn(true);
+		}
+		else{
+			System.out.println("Game is Over");
 		}
 		
 	}
