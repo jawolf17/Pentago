@@ -23,7 +23,6 @@ class ButtonFrame extends JFrame {
    private JTextField PlayerOne;// !! Make field private
    private JTextField PlayerTwo;
    private JRadioButton cpu;
-   @SuppressWarnings("LeakingThisInConstructor")
    public ButtonFrame(Controller con) {
 
       setTitle("Pentago");
@@ -57,7 +56,6 @@ class ButtonFrame extends JFrame {
    }
 
    class ButtonPanel extends JPanel implements ActionListener {
-      private Component frame;
 
       public ButtonPanel(Frame f, Controller con) {
 

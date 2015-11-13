@@ -1,11 +1,17 @@
 package controller;
 
 import models.Board;
+import models.Game;
+import models.Player;
 import views.Menu;
 import views.Gui;
 
 public class Controller {
 	private Board b;
+	private String PlayerOneName;
+	private String PlayerTwoName;
+	private Gui GUI;
+	private Game game;
 	public Controller(){
 		b=null;
 	}
@@ -16,7 +22,7 @@ public class Controller {
 		b.rotate(q, r);
 	}
 	public void update(){
-		//update gui
+		GUI.update(b.getBigBoard());
 	}
 	
 	//Methods for launch screen
@@ -34,14 +40,25 @@ public class Controller {
 	 * @param name2 - the name of player 2
 	 */
 	public void createGame(String name1, String name2){
-		new models.Game(name1,name2,this);
-		new Gui(this);
+		PlayerOneName = name1;
+		PlayerTwoName = name2;
+		game = new Game(name1,name2,this);
+		GUI = new Gui(this);
 
 	}
 	
 	//Getters / Setters
+	public Player getCurrentPlayer(){
+		return game.getCurPlayer();
+	}
 	
 	public void setBoard(models.Board board){
 		b=board;
+	}
+	public String getPlayerOneName(){
+		return PlayerOneName;
+	}
+	public String getPlayerTwoName(){
+		return PlayerTwoName;
 	}
 }

@@ -61,14 +61,14 @@ public class Game {
 	/**
 	 * @return The current player
 	 */
-	Player getCurPlayer(){
+	public Player getCurPlayer(){
 		return _currentp;
 	}
 	
 	/**
 	 * @return the class of the current board.
 	 */
-	Board getBoard(){
+	public Board getBoard(){
 		return _board;
 	}
 }
