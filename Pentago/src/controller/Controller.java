@@ -16,11 +16,18 @@ public class Controller {
 		b=null;
 	}
 	public void place(int row, int col,int c){
-		b.place(row, col, c);
+		if(getCurrentPlayer().getPlaced()==false){
+			b.place(row, col, c);
+		}
+		getCurrentPlayer().setPlaced(true);
+		
 		
 	}
 	public void rotate(char q,boolean r){
-		b.rotate(q, r);
+		if(getCurrentPlayer().getRotated()==false){
+			b.rotate(q, r);
+		}
+		getCurrentPlayer().setRotated(true);
 		game.upCheck();
 	}
 	public void update(){
@@ -62,5 +69,9 @@ public class Controller {
 	}
 	public String getPlayerTwoName(){
 		return PlayerTwoName;
+	}
+	public void endGame() {
+		GUI.endGame();
+		
 	}
 }

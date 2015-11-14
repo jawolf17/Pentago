@@ -45,16 +45,18 @@ public class Game {
 			//Needs to give control to GUI...somehow
 
 			_currentp.setTurn(false);
-			if(_currentp.equals(_p1)){
+			if(_currentp.equals(_p1) && _p1.getPlaced() && _p1.getRotated()){
 				_currentp = _p2;
+				_p2.turn();
 			}
-			else if(_currentp.equals(_p2)){
+			else if(_currentp.equals(_p2) && _p2.getPlaced() && _p2.getRotated()){
 				_currentp=_p1;
+				_p1.turn();
 			}
 			_currentp.setTurn(true);
 		}
 		else{
-			System.out.println("Game is Over");
+			_controller.endGame();
 		}
 		
 	}

@@ -15,6 +15,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.WindowConstants;
 
@@ -35,14 +36,14 @@ public class Gui{
 	    rotate = new JPanel(new GridLayout(2,4));
 	    buttons = new JButton[6][6];
 	    rotatebuttons = new JButton[8];
-	    rotatebuttons[0] = new JButton("Rotate Top-Left Quadrant right");
-	    rotatebuttons[1] = new JButton("Rotate Top-Left Quadrant left");
-	    rotatebuttons[2] = new JButton("Rotate Top-right Quadrant right");
-	    rotatebuttons[3] = new JButton("Rotate Top-right Quadrant left");
-	    rotatebuttons[4] = new JButton("Rotate Bottom-Left Quadrant right");
-	    rotatebuttons[5] = new JButton("Rotate Bottom-Left Quadrant left");
-	    rotatebuttons[6] = new JButton("Rotate Bottom-right Quadrant right");
-	    rotatebuttons[7] = new JButton("Rotate Bottom-right Quadrant left");
+	    rotatebuttons[0] = new JButton("T L >");
+	    rotatebuttons[1] = new JButton("T L <");
+	    rotatebuttons[2] = new JButton("T R >");
+	    rotatebuttons[3] = new JButton("T R <");
+	    rotatebuttons[4] = new JButton("B L >");
+	    rotatebuttons[5] = new JButton("B L <");
+	    rotatebuttons[6] = new JButton("B R >");
+	    rotatebuttons[7] = new JButton("B R <");
 	    
 	    rotatebuttons[0].addActionListener(new ActionListener() {
 	    		public void actionPerformed(ActionEvent e) {
@@ -230,6 +231,11 @@ public class Gui{
 			}
 			main.revalidate();
 			main.repaint();
+			
+		}
+		public void endGame() {
+			JOptionPane.showMessageDialog(frame,cont.getCurrentPlayer().getName()+" has won");
+			main.dispose();
 			
 		}
 	}
