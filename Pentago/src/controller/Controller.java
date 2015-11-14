@@ -20,8 +20,6 @@ public class Controller {
 			b.place(row, col, c);
 		}
 		getCurrentPlayer().setPlaced(true);
-		
-		
 	}
 	public void rotate(char q,boolean r){
 		if(getCurrentPlayer().getRotated()==false){
