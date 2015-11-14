@@ -1,16 +1,17 @@
 package models;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 
 import controller.Controller;
 
 public class Board {
 	private int[][] bigBoard;
-	private int[][] a;
+	private Controller control;
+	private int[][] a; 
 	private int[][] b;
 	private int[][] c;
 	private int[][] d;
-	private Controller control;
 	
 	public Board(Controller controller) {
 		bigBoard = new int[6][6];
@@ -27,10 +28,9 @@ public class Board {
 	 * @return boolean
 	 */
 	public boolean place(int row, int col,int p){
-		if((row > 5 || col > 5) || (p<=0 || p>3)){
-			return false;
+		if((row > 5 || col > 5) || (p<=0 || p>3)|| isOccupied(row,col)){
+			return false;	
 		}
-		 
 		if(row <= 2 && col <= 2){
 			a[row][col] = p;
 			update('a');
@@ -47,8 +47,7 @@ public class Board {
 			d[row-3][col-3] = p;
 			update('d');
 		}
-		
-		
+		control.update();
 		return true;
 	}
 	/**
@@ -286,5 +285,56 @@ public class Board {
 		return bigBoard;
 	}
 	
-
+	/**
+	 * Creates a copy of all boards, that if changed will not affect the game state.
+	 * @return a deep copy of all matrices on the board. Pos 0-3 are quadrants, 4 is BigBoard.
+	 */
+	public ArrayList<int[][]> getDeepCopies(){
+		ArrayList<int[][]> matricies = new ArrayList<int[][]>(4); 
+		ArrayList<int[][]> quadrants = new ArrayList<int[][]>(Arrays.asList(a,b,c,d));
+		
+		//Creates copy of all Quadrants
+		for(int i=0;i<quadrants.size();i++){
+			int[][] new_quad = new int[3][3];
+			int[][] cur = quadrants.get(i);
+			for(int j=0; j<2;j++){
+				int[] col = cur[j];
+				new_quad[j] = col.clone(); 
+			}
+			matricies.add(new_quad);
+		}
+		//Creates Copy of bigBoard
+		int[][] bigCopy = new int[6][6];
+		for(int i=0;i<bigBoard[0].length;i++){
+			bigCopy[i] = bigBoard[i].clone();
+		}
+		matricies.add(bigCopy);
+		
+		return matricies;
+	}
+	
+    
+	/**
+	 * Protected means that only classes inside the package and subclasses can call this
+	 * If we really want these methods to never be accessed board and AiBoard can be moved to a separate package
+	 */
+	protected void setBigBoard(int [][] board){
+		bigBoard = board;
+	}
+	
+	protected void setA(int[][] a_prime){
+		a = a_prime;
+	}
+	
+	protected void setB(int[][] b_prime){
+		b = b_prime;
+	}
+	
+	protected void setC(int[][] c_prime){
+		c = c_prime;
+	}
+	
+	protected void setD(int[][] d_prime){
+		d = d_prime;
+	}
 }
