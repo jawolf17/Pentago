@@ -17,9 +17,9 @@ public class AI extends Player {
 	
 	public AI(int c, String n ,Board b, Controller cont) {
 		super(c, n);
+		_board_actual = b;
 		_test_board= new AiBoard(b,cont);
 		_test_board.dummyUpdate();
-		_board_actual = b;
 	}
 	
 	/**
@@ -35,6 +35,11 @@ public class AI extends Player {
 				_board_actual.place(row, col, getColor());
 				setRotated(true);
 				setPlaced(true);
+			}
+			col++;
+			if(col==6){
+				col=0;
+				row++;
 			}
 		}
 	}

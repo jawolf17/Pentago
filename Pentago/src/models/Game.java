@@ -52,7 +52,7 @@ public class Game {
 			}
 			_currentp.setTurn(true);
 			_currentp.turn();
-		    _currentp.setTurn(false);
+		    //_currentp.setTurn(false);
 		}
 		else{
 			_controller.endGame();
