@@ -2,8 +2,11 @@ package views;
 
 import java.awt.Dimension;
 import java.awt.FlowLayout;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
 import java.awt.GridLayout;
 import java.awt.Image;
+import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
@@ -28,63 +31,100 @@ public class Gui{
 	private Controller cont;
 	private JButton[][] buttons;
 	private JButton[] rotatebuttons;
+	private GridBagConstraints c;
+	
 	public Gui(Controller con){
 		main = new JFrame("Pentago");
-		main.getContentPane().setLayout(new GridLayout(2,1));
+		main.getContentPane().setLayout(new GridBagLayout());
+		c = new GridBagConstraints();		
 		cont = con;
 	    frame = new JPanel(new GridLayout(6,6));
 	    rotate = new JPanel(new GridLayout(2,4));
 	    buttons = new JButton[6][6];
 	    rotatebuttons = new JButton[8];
-	    rotatebuttons[0] = new JButton("T L >");
-	    rotatebuttons[1] = new JButton("T L <");
-	    rotatebuttons[2] = new JButton("T R >");
-	    rotatebuttons[3] = new JButton("T R <");
-	    rotatebuttons[4] = new JButton("B L >");
-	    rotatebuttons[5] = new JButton("B L <");
-	    rotatebuttons[6] = new JButton("B R >");
-	    rotatebuttons[7] = new JButton("B R <");
+	    rotatebuttons[0] = new JButton("<--");
+	    rotatebuttons[1] = new JButton("-->");
+	    rotatebuttons[2] = new JButton("<--");
+	    rotatebuttons[3] = new JButton("-->");
+	    rotatebuttons[4] = new JButton("<--");
+	    rotatebuttons[5] = new JButton("-->");
+	    rotatebuttons[6] = new JButton("<--");
+	    rotatebuttons[7] = new JButton("-->");
 	    
 	    rotatebuttons[0].addActionListener(new ActionListener() {
 	    		public void actionPerformed(ActionEvent e) {
-	    				cont.rotate('a',false);
-	    			}
-	    		});
+	    				cont.rotate('a',true);
+	    			
+	    		}});
+	    c.fill = GridBagConstraints.HORIZONTAL;
+	    c.gridx = 2;
+	    c.gridy = 0;
+	    main.add(rotatebuttons[0],c);
+	    
 	    rotatebuttons[1].addActionListener(new ActionListener() {
     		public void actionPerformed(ActionEvent e) {
-    				cont.rotate('a',true);
+    				cont.rotate('a',false);
     			}
     		});
+	    c.fill = GridBagConstraints.HORIZONTAL;
+	    c.gridx = 0;
+	    c.gridy = 2;
+	    main.add(rotatebuttons[1],c);
 	    rotatebuttons[2].addActionListener(new ActionListener() {
-    		public void actionPerformed(ActionEvent e) {
-    				cont.rotate('b',false);
-    			}
-    		});
-	    rotatebuttons[3].addActionListener(new ActionListener() {
     		public void actionPerformed(ActionEvent e) {
     				cont.rotate('b',true);
     			}
     		});
-	    rotatebuttons[4].addActionListener(new ActionListener() {
+	    c.fill = GridBagConstraints.HORIZONTAL;
+	    c.gridx = 5;
+	    c.gridy = 1;
+	    main.add(rotatebuttons[2],c);
+	
+	    rotatebuttons[3].addActionListener(new ActionListener() {
     		public void actionPerformed(ActionEvent e) {
-    				cont.rotate('c',false);
+    				cont.rotate('b',false);
     			}
     		});
-	    rotatebuttons[5].addActionListener(new ActionListener() {
+	    c.fill = GridBagConstraints.HORIZONTAL;
+	    c.gridx = 4;
+	    c.gridy = 0;
+	    main.add(rotatebuttons[3],c);
+	    rotatebuttons[4].addActionListener(new ActionListener() {
     		public void actionPerformed(ActionEvent e) {
     				cont.rotate('c',true);
     			}
     		});
-	    rotatebuttons[6].addActionListener(new ActionListener() {
+	    c.fill = GridBagConstraints.HORIZONTAL;
+	    c.gridx = 2;
+	    c.gridy = 5;
+	    main.add(rotatebuttons[4],c);
+	    rotatebuttons[5].addActionListener(new ActionListener() {
     		public void actionPerformed(ActionEvent e) {
-    				cont.rotate('d',false);
+    				cont.rotate('c',false);
     			}
     		});
-	    rotatebuttons[7].addActionListener(new ActionListener() {
+	    c.fill = GridBagConstraints.HORIZONTAL;
+	    c.gridx = 0;
+	    c.gridy = 4;
+	    main.add(rotatebuttons[5],c);
+	    rotatebuttons[6].addActionListener(new ActionListener() {
     		public void actionPerformed(ActionEvent e) {
     				cont.rotate('d',true);
     			}
     		});
+	    c.fill = GridBagConstraints.HORIZONTAL;
+	    c.gridx = 5;
+	    c.gridy = 4;
+	    main.add(rotatebuttons[6],c);
+	    rotatebuttons[7].addActionListener(new ActionListener() {
+    		public void actionPerformed(ActionEvent e) {
+    				cont.rotate('d',false);
+    			}
+    		});
+	    c.fill = GridBagConstraints.HORIZONTAL;
+	    c.gridx = 4;
+	    c.gridy = 5;
+	    main.add(rotatebuttons[7],c);
 	    for(int i = 0;i < buttons[0].length;i++){
 	    	for(int j = 0;j<buttons.length;j++){
 	    		int x = i;
@@ -150,15 +190,17 @@ public class Gui{
 	    }
 	    
 	    // put the button on the frame
-	   for(int l = 0;l<rotatebuttons.length;l++){
-		   rotate.add(rotatebuttons[l]);
-	   }
-	   main.add(frame);
-	   main.add(rotate);
+	    c.fill = GridBagConstraints.HORIZONTAL;
+	    c.insets = new Insets(0,0,0,0);
+	    c.gridx = 1;
+	    c.gridy = 1;
+	    c.gridheight = 4;
+	    c.gridwidth = 4;
+	   main.add(frame,c);
 	 
 	    // set up the jframe, then display it
 	    main.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-	    main.setPreferredSize(new Dimension(340, 600));
+	    main.setPreferredSize(new Dimension(600, 600));
 	    main.pack();
 	    main.setLocationRelativeTo(null);
 	    main.setVisible(true);
