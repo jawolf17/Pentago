@@ -1,5 +1,6 @@
 package models;
 
+import ai.AI;
 import controller.Controller;
 
 public class Game {
@@ -15,19 +16,18 @@ public class Game {
 	 * Sets current player to p1.
 	 */
 	public Game(String name1, String name2, Controller c){
+		_controller = c;
+		_board = new Board(_controller);
+		_controller.setBoard(_board);
 		_p1 = new Player(1,name1);
 		if(name2.equals("CPU")){
-			//TODO: add constructor for non-human player, for now just creates another human
-			_p2 = new Player(2,name2);
+			_p2 = new AI(2,name2,_board,_controller);
 		}
 		else{
 			_p2 = new Player(2,name2);
 		}
 	
 		_currentp = _p1;
-		_controller = c;
-		_board = new Board(_controller);
-		_controller.setBoard(_board);
 		
 	}
 	
@@ -43,17 +43,16 @@ public class Game {
 		
 		if(!_board.isWon()){
 			//Needs to give control to GUI...somehow
-
-			_currentp.setTurn(false);
+			
 			if(_currentp.equals(_p1) && _p1.getPlaced() && _p1.getRotated()){
 				_currentp = _p2;
-				_p2.turn();
 			}
 			else if(_currentp.equals(_p2) && _p2.getPlaced() && _p2.getRotated()){
 				_currentp=_p1;
-				_p1.turn();
 			}
 			_currentp.setTurn(true);
+			_currentp.turn();
+		    _currentp.setTurn(false);
 		}
 		else{
 			_controller.endGame();
