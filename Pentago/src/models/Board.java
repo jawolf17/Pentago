@@ -136,6 +136,9 @@ public class Board {
 			return true;
 		}
 	}
+	public boolean isNeutral(){
+		return false;
+	}
 	/**
 	 * isWon returns true is there is a winning grouping of 5 on the board.
 	 * 

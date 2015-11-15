@@ -31,6 +31,9 @@ public class Controller {
 	public void dummyRotate(){
 		game.upCheck();
 	}
+	public boolean isNeutral(){
+		return b.isNeutral();
+	}
 	public void update(){
 		GUI.update(b.getBigBoard());
 	}

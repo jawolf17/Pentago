@@ -25,23 +25,40 @@ import javax.swing.WindowConstants;
 import controller.Controller;
 
 public class Gui{
+	private JPanel info;
 	private JFrame main;
+	private JPanel boardGui;
 	private JPanel frame;
 	private JPanel rotate;
 	private Controller cont;
 	private JButton[][] buttons;
 	private JButton[] rotatebuttons;
 	private GridBagConstraints c;
+	private JButton endTurn;
 	
 	public Gui(Controller con){
 		main = new JFrame("Pentago");
-		main.getContentPane().setLayout(new GridBagLayout());
+		main.getContentPane().setLayout(new FlowLayout());
+		info = new JPanel(new FlowLayout());
+		boardGui = new JPanel(new GridBagLayout());
+		endTurn = new JButton("End Turn");
 		c = new GridBagConstraints();		
 		cont = con;
 	    frame = new JPanel(new GridLayout(6,6));
 	    rotate = new JPanel(new GridLayout(2,4));
 	    buttons = new JButton[6][6];
 	    rotatebuttons = new JButton[8];
+	    endTurn.addActionListener(new ActionListener() {
+    		public void actionPerformed(ActionEvent e) {
+    				if(cont.isNeutral()){
+    					cont.dummyRotate();
+    				}
+    				else{
+    					JOptionPane.showMessageDialog(frame,"As there is not a neutral board, you need to rotate before you can end your turn.");
+    				}
+    				
+    			}
+    		});
 	    rotatebuttons[0] = new JButton(new ImageIcon("src/arrowtopleft.png")); 
 		rotatebuttons[0].setBorder(BorderFactory.createEmptyBorder());
 		rotatebuttons[0].setContentAreaFilled(false);
@@ -75,7 +92,7 @@ public class Gui{
 	    c.fill = GridBagConstraints.HORIZONTAL;
 	    c.gridx = 2;
 	    c.gridy = 0;
-	    main.add(rotatebuttons[0],c);
+	    boardGui.add(rotatebuttons[0],c);
 	    
 	    rotatebuttons[1].addActionListener(new ActionListener() {
     		public void actionPerformed(ActionEvent e) {
@@ -85,7 +102,7 @@ public class Gui{
 	    c.fill = GridBagConstraints.HORIZONTAL;
 	    c.gridx = 0;
 	    c.gridy = 1;
-	    main.add(rotatebuttons[1],c);
+	    boardGui.add(rotatebuttons[1],c);
 	    rotatebuttons[2].addActionListener(new ActionListener() {
     		public void actionPerformed(ActionEvent e) {
     				cont.rotate('b',true);
@@ -94,7 +111,7 @@ public class Gui{
 	    c.fill = GridBagConstraints.HORIZONTAL;
 	    c.gridx = 5;
 	    c.gridy = 1;
-	    main.add(rotatebuttons[2],c);
+	    boardGui.add(rotatebuttons[2],c);
 	
 	    rotatebuttons[3].addActionListener(new ActionListener() {
     		public void actionPerformed(ActionEvent e) {
@@ -105,7 +122,7 @@ public class Gui{
 	    c.gridx = 4;
 	    c.gridy = 0;
 	    c.insets = new Insets(0,275,0,0);
-	    main.add(rotatebuttons[3],c);
+	    boardGui.add(rotatebuttons[3],c);
 	    c.insets = new Insets(0,0,0,0);
 	    rotatebuttons[4].addActionListener(new ActionListener() {
     		public void actionPerformed(ActionEvent e) {
@@ -115,7 +132,7 @@ public class Gui{
 	    c.fill = GridBagConstraints.HORIZONTAL;
 	    c.gridx = 2;
 	    c.gridy = 5;
-	    main.add(rotatebuttons[4],c);
+	    boardGui.add(rotatebuttons[4],c);
 	    rotatebuttons[5].addActionListener(new ActionListener() {
     		public void actionPerformed(ActionEvent e) {
     				cont.rotate('c',true);
@@ -125,7 +142,7 @@ public class Gui{
 	    c.gridx = 0;
 	    c.gridy = 4;
 	    c.insets = new Insets(150,0,0,0);
-	    main.add(rotatebuttons[5],c);
+	    boardGui.add(rotatebuttons[5],c);
 	    c.insets = new Insets(0,0,0,0);
 	    rotatebuttons[6].addActionListener(new ActionListener() {
     		public void actionPerformed(ActionEvent e) {
@@ -136,7 +153,7 @@ public class Gui{
 	    c.gridx = 5;
 	    c.gridy = 4;
 	    c.insets = new Insets(150,0,0,0);
-	    main.add(rotatebuttons[6],c);
+	    boardGui.add(rotatebuttons[6],c);
 	    c.insets = new Insets(0,0,0,0);
 	    rotatebuttons[7].addActionListener(new ActionListener() {
     		public void actionPerformed(ActionEvent e) {
@@ -147,7 +164,7 @@ public class Gui{
 	    c.gridx = 4;
 	    c.gridy = 5;
 	    c.insets = new Insets(0,275,0,0);
-	    main.add(rotatebuttons[7],c);
+	    boardGui.add(rotatebuttons[7],c);
 	    c.insets = new Insets(0,0,0,0);
 	    for(int i = 0;i < buttons[0].length;i++){
 	    	for(int j = 0;j<buttons.length;j++){
@@ -220,7 +237,10 @@ public class Gui{
 	    c.gridy = 1;
 	    c.gridheight = 4;
 	    c.gridwidth = 4;
-	   main.add(frame,c);
+	    boardGui.add(frame,c);
+	    info.add(endTurn);
+	    main.add(info);
+	    main.add(boardGui);
 	 
 	    // set up the jframe, then display it
 	    main.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
@@ -295,8 +315,8 @@ public class Gui{
 			    	}
 				}
 			}
-			main.revalidate();
-			main.repaint();
+			boardGui.revalidate();
+			boardGui.repaint();
 			
 		}
 		public void endGame() {
