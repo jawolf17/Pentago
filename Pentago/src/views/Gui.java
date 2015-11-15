@@ -124,7 +124,7 @@ public class Gui{
 	    c.fill = GridBagConstraints.HORIZONTAL;
 	    c.gridx = 0;
 	    c.gridy = 4;
-	    c.insets = new Insets(200,0,0,0);
+	    c.insets = new Insets(150,0,0,0);
 	    main.add(rotatebuttons[5],c);
 	    c.insets = new Insets(0,0,0,0);
 	    rotatebuttons[6].addActionListener(new ActionListener() {
@@ -135,7 +135,7 @@ public class Gui{
 	    c.fill = GridBagConstraints.HORIZONTAL;
 	    c.gridx = 5;
 	    c.gridy = 4;
-	    c.insets = new Insets(200,0,0,0);
+	    c.insets = new Insets(150,0,0,0);
 	    main.add(rotatebuttons[6],c);
 	    c.insets = new Insets(0,0,0,0);
 	    rotatebuttons[7].addActionListener(new ActionListener() {
