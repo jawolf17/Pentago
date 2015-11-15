@@ -14,10 +14,12 @@ public class AI extends Player {
 
 	private AiBoard _test_board;
 	private Board _board_actual;
+	private Controller _con;
 	
 	public AI(int c, String n ,Board b, Controller cont) {
 		super(c, n);
 		_board_actual = b;
+		_con = cont;
 		_test_board= new AiBoard(b,cont);
 		_test_board.dummyUpdate();
 	}
@@ -32,9 +34,10 @@ public class AI extends Player {
 		int col =0;
 		while(row<6&&col<6&&!getPlaced()){
 			if(_test_board.checkPlacement(row,col)){
-				_board_actual.place(row, col, getColor());
+				_con.place(row, col, getColor());
 				setRotated(true);
-				setPlaced(true);
+				_con.dummyRotate();
+				
 			}
 			col++;
 			if(col==6){

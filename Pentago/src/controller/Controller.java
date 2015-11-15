@@ -28,6 +28,9 @@ public class Controller {
 		getCurrentPlayer().setRotated(true);
 		game.upCheck();
 	}
+	public void dummyRotate(){
+		game.upCheck();
+	}
 	public void update(){
 		GUI.update(b.getBigBoard());
 	}
