@@ -22,27 +22,49 @@ class ButtonFrame extends JFrame {
 
    private JTextField PlayerOne;// !! Make field private
    private JTextField PlayerTwo;
-   private JRadioButton cpu;
+   private ButtonGroup cpu;
+   private JRadioButton cpuEasy;
+   private JRadioButton cpuMed;
+   private JRadioButton cpuHard;
+   
    public ButtonFrame(Controller con) {
 
       setTitle("Pentago");
-      setSize(900, 900);
+      setSize(1500,200);
+      
       ButtonPanel panel = new ButtonPanel(this,con);
       panel.add(new JLabel("Player 1:"));
       
       PlayerOne = new JTextField(40);
-      
+      cpu = new ButtonGroup();
       PlayerTwo = new JTextField(40);
-      cpu = new JRadioButton("CPU");
+      cpuEasy = new JRadioButton("CPU:Easy");
+      cpuMed = new JRadioButton("CPU:Medium");
+      cpuHard = new JRadioButton("CPU:Hard");
+      cpu.add(cpuEasy);
+      cpu.add(cpuMed);
+      cpu.add(cpuHard);
       panel.add(PlayerOne);
       panel.add(new JLabel("Player 2:"));
       panel.add(PlayerTwo);
-      panel.add(cpu);
-      cpu.addActionListener(new ActionListener() {
+      panel.add(cpuEasy);
+      panel.add(cpuMed);
+      panel.add(cpuHard);
+      cpuEasy.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-            	PlayerTwo.setText("CPU");
+            	PlayerTwo.setText("CPU:Easy");
             }
       });
+      cpuMed.addActionListener(new ActionListener() {
+          public void actionPerformed(ActionEvent e) {
+          	PlayerTwo.setText("CPU:Medium");
+          }
+    });
+      cpuHard.addActionListener(new ActionListener() {
+          public void actionPerformed(ActionEvent e) {
+          	PlayerTwo.setText("CPU:Hard");
+          }
+    });
       add(panel, BorderLayout.CENTER);
    }
 
