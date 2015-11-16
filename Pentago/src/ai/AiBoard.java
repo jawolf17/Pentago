@@ -10,6 +10,7 @@ import java.util.ArrayList;
 
 import controller.Controller;
 import models.Board;
+import util.Pair;
 
 public class AiBoard extends Board {
 
@@ -31,6 +32,22 @@ public class AiBoard extends Board {
 	 public Boolean checkPlacement(int row, int col){
 		return !isOccupied(row,col);
 	}
+	 public Pair canLose(){
+		 Pair p = new Pair();
+		 int[][] big = _cur_board.getBigBoard();
+		 for(int i = 0;i<big[0].length;i++){
+			 for(int j = 0;j<big.length;j++){
+				 if(!_cur_board.isOccupied(i,j)){
+					 
+				 }
+			 }
+		 }
+		 return p;
+	 }
+	 public Pair canWin(){
+		 Pair p = new Pair();
+		 return p;
+	 }
 	 
 	 /**
 	  * Updates the AIBoard to match the current state of the game Board

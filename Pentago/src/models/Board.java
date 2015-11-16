@@ -165,7 +165,7 @@ public class Board {
 	 * @param none
 	 * @return boolean
 	 */
-	public boolean isWon(){
+	public int isWon(){
 		int org = 0;
 		for(int i=0;i<bigBoard[0].length;i++){
 			for(int j=0;j<bigBoard.length;j++){
@@ -181,7 +181,7 @@ public class Board {
 							if(next3<6 && bigBoard[i][next3] == org){
 								next3 = next3 +1;
 								if(next3<6 && bigBoard[i][next3] == org){
-									return true;
+									return org;
 								}
 							}
 						}
@@ -193,7 +193,7 @@ public class Board {
 							if(next<6 && bigBoard[next][j] == org){
 								next = next+1;
 								if(next<6 && bigBoard[next][j] == org){
-									return true;
+									return org;
 								}
 							}
 						}
@@ -211,7 +211,7 @@ public class Board {
 								next3 = next3 +1;
 								next = next +1;
 								if((next3<6 && next <6) && bigBoard[next][next3] == org){
-									return true;
+									return org;
 								}
 							}
 						}
@@ -227,7 +227,7 @@ public class Board {
 								next4 = next4 -1;
 								next = next +1;
 								if((next4>0 && next <6) && bigBoard[next][next4] == org){
-									return true;
+									return org;
 								}
 							}
 						}
@@ -239,7 +239,7 @@ public class Board {
 				}
 			}
 		}
-		return false;
+		return org;
 	}
 	private void update(){
 		for(int i = 0;i<a[0].length;i++){
