@@ -17,9 +17,12 @@ public class Controller {
 	}
 	public void place(int row, int col,int c){
 		if(getCurrentPlayer().getPlaced()==false){
+			if(!b.isOccupied(row, col)){
+				getCurrentPlayer().setPlaced(true);
+			}
 			b.place(row, col, c);
 		}
-		getCurrentPlayer().setPlaced(true);
+		
 	}
 	public void rotate(char q,boolean r){
 		if(getCurrentPlayer().getRotated()==false && getCurrentPlayer().getPlaced() == true){
