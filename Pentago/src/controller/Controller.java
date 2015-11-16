@@ -32,6 +32,7 @@ public class Controller {
 		game.upCheck();
 	}
 	public void dummyRotate(){
+		getCurrentPlayer().setRotated(true);
 		game.upCheck();
 	}
 	public boolean isNeutral(){
