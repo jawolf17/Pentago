@@ -12,6 +12,10 @@ public class Board {
 	private int[][] b;
 	private int[][] c;
 	private int[][] d;
+	private boolean neutral_a;
+	private boolean neutral_b;
+	private boolean neutral_c;
+	private boolean neutral_d;
 	
 	public Board(Controller controller) {
 		bigBoard = new int[6][6];
@@ -20,6 +24,10 @@ public class Board {
 		c = new int[3][3];
 		d = new int[3][3];
 		control = controller;
+		neutral_a = true;
+		neutral_b = true;
+		neutral_c = true;
+		neutral_d= true;
 		
 	}
 	/**
@@ -32,18 +40,30 @@ public class Board {
 			return false;	
 		}
 		if(row <= 2 && col <= 2){
+			if(row!=1&&col!=1&&neutral_a){
+				neutral_a=false;
+			}
 			a[row][col] = p;
 			update('a');
 		}
 		else if(row <= 2 && col >= 3){
+			if(row!=1&&col!=4&&neutral_b){
+				neutral_b=false;
+			}
 			b[row][col-3] = p;
 			update('b');
 		}
 		else if(row >=3 && col <= 2){
+			if(row!=4&&col!=1&&neutral_c){
+				neutral_c=false;
+			}
 			c[row-3][col] = p;
 			update('c');
 		}
 		else if(row >=3 && col >= 3){
+			if(row!=4&&col!=4&&neutral_d){
+				neutral_d=false;
+			}
 			d[row-3][col-3] = p;
 			update('d');
 		}
@@ -137,7 +157,8 @@ public class Board {
 		}
 	}
 	public boolean isNeutral(){
-		return false;
+		
+		return neutral_a || neutral_b || neutral_c || neutral_d;
 	}
 	/**
 	 * isWon returns true is there is a winning grouping of 5 on the board.
