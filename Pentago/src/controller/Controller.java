@@ -22,7 +22,7 @@ public class Controller {
 		getCurrentPlayer().setPlaced(true);
 	}
 	public void rotate(char q,boolean r){
-		if(getCurrentPlayer().getRotated()==false){
+		if(getCurrentPlayer().getRotated()==false && getCurrentPlayer().getPlaced() == true){
 			b.rotate(q, r);
 		}
 		getCurrentPlayer().setRotated(true);
