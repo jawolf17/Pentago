@@ -19,7 +19,7 @@ public class AI extends Player {
 	
 	public AI(int c, String n ,Board b, Controller cont) {
 		super(c, n);
-		_diff = n.substring(4);
+		_diff = n.substring(4).toLowerCase();
 		_board_actual = b;
 		_con = cont;
 		_test_board= new AiBoard(b,cont);
