@@ -42,7 +42,7 @@ public class Gui{
 		main.getContentPane().setLayout(new FlowLayout());
 		info = new JPanel(new FlowLayout());
 		boardGui = new JPanel(new GridBagLayout());
-		endTurn = new JButton("End Turn");
+		endTurn = new JButton("Skip Rotate");
 		c = new GridBagConstraints();		
 		cont = con;
 	    frame = new JPanel(new GridLayout(6,6));
