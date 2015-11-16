@@ -67,7 +67,6 @@ public class Board {
 			d[row-3][col-3] = p;
 			update('d');
 		}
-		control.update();
 		return true;
 	}
 	/**
