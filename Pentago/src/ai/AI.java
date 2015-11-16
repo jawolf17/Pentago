@@ -20,6 +20,7 @@ public class AI extends Player {
 	public AI(int c, String n ,Board b, Controller cont) {
 		super(c, n);
 		_diff = n.substring(4).toLowerCase();
+		System.out.println(_diff);
 		_board_actual = b;
 		_con = cont;
 		_test_board= new AiBoard(b,cont);
@@ -47,7 +48,6 @@ public class AI extends Player {
 		while(row<6&&col<6&&!getPlaced()){
 			if(_test_board.checkPlacement(row,col)){
 				_con.place(row, col, getColor());
-				setRotated(true);
 				_con.dummyRotate();
 				
 			}
