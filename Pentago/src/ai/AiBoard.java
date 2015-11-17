@@ -30,10 +30,10 @@ public class AiBoard{
 		board = curBoard;
 		control = controller;
 		bigBoard = new int[6][6];
-		a = curBoard.getQuadA();
-		b = curBoard.getQuadB();
-		c = curBoard.getQuadC();
-		d = curBoard.getQuadD();
+		a = new int[3][3];
+		b = new int[3][3];
+		c = new int[3][3];
+		d = new int[3][3];
 	}
 	/**
 	 * Used to place pieces on the board.
@@ -336,9 +336,8 @@ public class AiBoard{
 			 op = 1;
 		 }
 		 Maneuver p = new Maneuver();
-		 int[][] big = bigBoard;
-		 for(int i = 0;i<big[0].length;i++){
-			 for(int j = 0;j<big.length;j++){
+		 for(int i = 0;i<bigBoard[0].length;i++){
+			 for(int j = 0;j<bigBoard.length;j++){
 				 if(!isOccupied(i,j)){
 					 place(i,j,op);
 					 if(isWon() == op){
@@ -421,9 +420,9 @@ public class AiBoard{
 						 return p;
 					 }
 					 rotate('d',true);
-					 	
+					 place(i,j,0);
 				 }
-				 dummyUpdate();
+				 
 			 }
 		 }
 		 return p;
@@ -437,19 +436,13 @@ public class AiBoard{
 			 op = 2;
 		 }
 		 Maneuver p = new Maneuver();
-		 int[][] big = bigBoard;
-		 for(int i = 0;i<big[0].length;i++){
-			 for(int j = 0;j<big.length;j++){
+		 for(int i = 0;i<bigBoard[0].length;i++){
+			 for(int j = 0;j<bigBoard.length;j++){
 				 if(!isOccupied(i,j)){
 					 place(i,j,op);
-					 System.out.println("OP:"+op);
-					 System.out.println("isWon:"+isWon());
 					 if(isWon() == op){
 						 p.row = i;
 						 p.column = j;
-						 
-						 
-						 System.out.println(1);
 						 return p;
 					 }
 					 rotate('a',true);
@@ -530,9 +523,10 @@ public class AiBoard{
 						 return p;
 					 }
 					 rotate('d',true);
-					 	
+					 
+					 place(i,j,0);
 				 }
-				 dummyUpdate();
+				 
 			 }
 		 }
 		 return p;
