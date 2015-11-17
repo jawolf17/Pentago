@@ -124,19 +124,3 @@ public class AI extends Player {
 		}
 	}
 	
-//		int row=0;
-//		int col =0;
-//		while(row<6&&col<6&&!getPlaced()){
-//			if(_test_board.checkPlacement(row,col)){
-//				_con.place(row, col, getColor());
-//				_con.dummyRotate();
-//				
-//			}
-//			col++;
-//			if(col==6){
-//				col=0;
-//				row++;
-//			}
-//		}
-
-
