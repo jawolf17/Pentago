@@ -10,7 +10,7 @@ import java.util.ArrayList;
 
 import controller.Controller;
 import models.Board;
-import util.Pair;
+import util.Maneuver;
 
 public class AiBoard extends Board {
 
@@ -32,8 +32,8 @@ public class AiBoard extends Board {
 	 public Boolean checkPlacement(int row, int col){
 		return !isOccupied(row,col);
 	}
-	 public Pair canLose(){
-		 Pair p = new Pair();
+	 public Maneuver canLose(){
+		 Maneuver p = new Maneuver();
 		 int[][] big = _cur_board.getBigBoard();
 		 for(int i = 0;i<big[0].length;i++){
 			 for(int j = 0;j<big.length;j++){
@@ -44,8 +44,8 @@ public class AiBoard extends Board {
 		 }
 		 return p;
 	 }
-	 public Pair canWin(){
-		 Pair p = new Pair();
+	 public Maneuver canWin(){
+		 Maneuver p = new Maneuver();
 		 return p;
 	 }
 	 
