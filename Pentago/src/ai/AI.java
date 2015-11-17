@@ -117,6 +117,9 @@ public class AI extends Player {
 							_con.rotate(quad_char,true);
 						}
 				}
+				else{
+					_con.dummyRotate();
+				}
 			}
 		}
 	}

@@ -423,7 +423,8 @@ public class AiBoard{
 					 rotate('d',true);
 					 
 				 }
-				 dummyUpdate(); 
+				 dummyUpdate();
+				 System.out.println(Arrays.deepToString(bigBoard));
 			 }
 		 }
 		 return p;
@@ -521,6 +522,7 @@ public class AiBoard{
 					 rotate('d',true);
 
 				 }
+				 System.out.println(Arrays.deepToString(bigBoard));
 				 dummyUpdate();
 			 }
 		 }
