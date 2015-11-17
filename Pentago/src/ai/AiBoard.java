@@ -13,7 +13,7 @@ import models.Board;
 import util.Maneuver;
 
 public class AiBoard{
-
+	private Board board;
 	private int[][] bigBoard;
 	private int[][] a;
 	private int[][] b;
@@ -27,6 +27,7 @@ public class AiBoard{
 	
 	
 	public AiBoard(Board curBoard,Controller controller) {
+		board = curBoard;
 		control = controller;
 		bigBoard = curBoard.getBigBoard();
 		a = curBoard.getQuadA();
@@ -266,7 +267,6 @@ public class AiBoard{
 				bigBoard[e+3][r+3] = b[e][r];
 			}
 		}
-		control.update();
 		
 	}
 	private void update(char q){
@@ -300,7 +300,22 @@ public class AiBoard{
 				}
 				break;
 		}
-		control.update();
+	}
+	private char quadCheck(int row, int col){
+		if(row <= 2 && col <= 2){
+			return 'a';
+		}
+		else if(row <= 2 && col >= 3){
+			return 'b';
+		}
+		else if(row >=3 && col <= 2){
+			return 'c';
+		}
+		else if(row >=3 && col >= 3){
+			return 'd';
+		}
+		return 'z';
+		
 	}
 	/**
 	 * Checks to see if position at row column will result in "preferred placement" (define that later)
@@ -326,6 +341,87 @@ public class AiBoard{
 			 for(int j = 0;j<big.length;j++){
 				 if(!isOccupied(i,j)){
 					 place(i,j,op);
+					 if(isWon() == op){
+						 p.row = i;
+						 p.column = j;
+						 p.quad = quadCheck(i,j);
+						 p.dir = true;
+						 return p;
+					 }
+					 rotate('a',true);
+					 if(isWon() == op){
+						 p.row = i;
+						 p.column = j;
+						 p.quad = 'a';
+						 p.dir = true;
+						 return p;
+						 
+					 }
+					 rotate('a',false);
+					 rotate('a',false);
+					 if(isWon() == op){
+						 p.row = i;
+						 p.column = j;
+						 p.quad = 'a';
+						 p.dir = false;
+						 return p;
+					 }
+					 rotate('a',true);
+					 rotate('b',true);
+					 if(isWon() == op){
+						 p.row = i;
+						 p.column = j;
+						 p.quad = 'b';
+						 p.dir = true;
+						 return p;
+					 }
+					 rotate('b',false);
+					 rotate('b',false);
+					 if(isWon() == op){
+						 p.row = i;
+						 p.column = j;
+						 p.quad = 'b';
+						 p.dir = false;
+						 return p;
+					 }
+					 rotate('b',true);
+					 rotate('c',true);
+					 if(isWon() == op){
+						 p.row = i;
+						 p.column = j;
+						 p.quad = 'c';
+						 p.dir = true;
+						 return p;
+					 }
+					 rotate('c',false);
+					 rotate('c',false);
+					 if(isWon() == op){
+						 p.row = i;
+						 p.column = j;
+						 p.quad = 'c';
+						 p.dir = false;
+						 return p;
+					 }
+					 rotate('c',true);
+					 rotate('d',true);
+					 if(isWon() == op){
+						 p.row = i;
+						 p.column = j;
+						 p.quad = 'd';
+						 p.dir = true;
+						 return p;
+					 }
+					 rotate('d',false);
+					 rotate('d',false);
+					 if(isWon() == op){
+						 p.row = i;
+						 p.column = j;
+						 p.quad = 'd';
+						 p.dir = false;
+						 return p;
+					 }
+					 rotate('d',true);
+					 	
 				 }
 				 dummyUpdate();
 			 }
@@ -333,7 +429,104 @@ public class AiBoard{
 		 return p;
 	 }
 	 public Maneuver canWin(){
+		 int op;
+		 if(control.getCurrentPlayer().getColor() == 1){
+			 op = 1;
+		 }
+		 else{
+			 op = 2;
+		 }
 		 Maneuver p = new Maneuver();
+		 int[][] big = bigBoard;
+		 for(int i = 0;i<big[0].length;i++){
+			 for(int j = 0;j<big.length;j++){
+				 if(!isOccupied(i,j)){
+					 place(i,j,op);
+					 if(isWon() == op){
+						 p.row = i;
+						 p.column = j;
+						 p.quad = quadCheck(i,j);
+						 p.dir = true;
+						 return p;
+					 }
+					 rotate('a',true);
+					 if(isWon() == op){
+						 p.row = i;
+						 p.column = j;
+						 p.quad = 'a';
+						 p.dir = true;
+						 return p;
+						 
+					 }
+					 rotate('a',false);
+					 rotate('a',false);
+					 if(isWon() == op){
+						 p.row = i;
+						 p.column = j;
+						 p.quad = 'a';
+						 p.dir = false;
+						 return p;
+					 }
+					 rotate('a',true);
+					 rotate('b',true);
+					 if(isWon() == op){
+						 p.row = i;
+						 p.column = j;
+						 p.quad = 'b';
+						 p.dir = true;
+						 return p;
+					 }
+					 rotate('b',false);
+					 rotate('b',false);
+					 if(isWon() == op){
+						 p.row = i;
+						 p.column = j;
+						 p.quad = 'b';
+						 p.dir = false;
+						 return p;
+					 }
+					 rotate('b',true);
+					 rotate('c',true);
+					 if(isWon() == op){
+						 p.row = i;
+						 p.column = j;
+						 p.quad = 'c';
+						 p.dir = true;
+						 return p;
+					 }
+					 rotate('c',false);
+					 rotate('c',false);
+					 if(isWon() == op){
+						 p.row = i;
+						 p.column = j;
+						 p.quad = 'c';
+						 p.dir = false;
+						 return p;
+					 }
+					 rotate('c',true);
+					 rotate('d',true);
+					 if(isWon() == op){
+						 p.row = i;
+						 p.column = j;
+						 p.quad = 'd';
+						 p.dir = true;
+						 return p;
+					 }
+					 rotate('d',false);
+					 rotate('d',false);
+					 if(isWon() == op){
+						 p.row = i;
+						 p.column = j;
+						 p.quad = 'd';
+						 p.dir = false;
+						 return p;
+					 }
+					 rotate('d',true);
+					 	
+				 }
+				 dummyUpdate();
+			 }
+		 }
 		 return p;
 	 }
 	 
@@ -341,7 +534,8 @@ public class AiBoard{
 	  * Updates the AIBoard to match the current state of the game Board
 	  */
 	 public void dummyUpdate(){
-		 
+		 bigBoard = board.getBigBoard();
+		 update();
 	 }		
 	
 
