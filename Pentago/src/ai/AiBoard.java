@@ -421,15 +421,14 @@ public class AiBoard{
 						 return p;
 					 }
 					 rotate('d',true);
-					 place(i,j,0);
+					 
 				 }
-				 
+				 dummyUpdate(); 
 			 }
 		 }
 		 return p;
 	 }
 	 public Maneuver canWin(){
-		 System.out.println("Before: " +Arrays.deepToString(bigBoard));
 		 int op;
 		 if(control.getCurrentPlayer().getColor() == 1){
 			 op = 1;
@@ -521,10 +520,8 @@ public class AiBoard{
 					 }
 					 rotate('d',true);
 
-				 place(i,j,0);
-				 System.out.println(Arrays.deepToString(bigBoard));
-
 				 }
+				 dummyUpdate();
 			 }
 		 }
 		 return p;
