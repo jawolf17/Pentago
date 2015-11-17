@@ -24,7 +24,6 @@ public class AI extends Player {
 	public AI(int c, String n ,Board b, Controller cont) {
 		super(c, n);
 		_diff = n.substring(4).toLowerCase();
-		System.out.println(_diff);
 		_board_actual = b;
 		_con = cont;
 		_test_board= new AiBoard(b,cont);
@@ -35,7 +34,6 @@ public class AI extends Player {
 	 * Takes the turn for the AI, currently places at the first available space, does not rotate.
 	 */
 	public void turn(){
-		System.out.println("Turn Called");
 		super.turn();
 		_test_board.dummyUpdate();
 		switch(_diff){
@@ -51,11 +49,9 @@ public class AI extends Player {
 	
 	private void turnEasy(){
 		Boolean turnTaken = false;
-		System.out.println("turnEasy");
 		Maneuver win_result = _test_board.canWin();
 		//Winning placement check
 		if(win_result.column!=-1&&win_result.column!=-1){
-			System.out.println("winning.....");
 			_con.place(win_result.row,win_result.column,getColor());
 			if(win_result.quad!='z'){
 				 _con.rotate(win_result.quad, win_result.dir);
@@ -67,7 +63,6 @@ public class AI extends Player {
 		}
 		//Prevent D
 		if(!turnTaken){
-			System.out.println("Hopefull not lossing");
 			Maneuver loss_prevent = _test_board.canLose();
 			if(loss_prevent.row!=-1&&loss_prevent.column!=-1){
 				_con.place(loss_prevent.row, loss_prevent.column, getColor());
@@ -84,7 +79,6 @@ public class AI extends Player {
 		}
 		//Random Placement
 		if(!turnTaken){
-			System.out.println("Random Place");
 			Random r = new Random();
 			while(!turnTaken){
 				int row = r.nextInt(6);
