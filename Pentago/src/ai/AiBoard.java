@@ -429,6 +429,7 @@ public class AiBoard{
 		 return p;
 	 }
 	 public Maneuver canWin(){
+		 System.out.println("Before: " +Arrays.deepToString(bigBoard));
 		 int op;
 		 if(control.getCurrentPlayer().getColor() == 1){
 			 op = 1;
@@ -520,7 +521,7 @@ public class AiBoard{
 					 }
 					 rotate('d',true);
 
-					 place(i,j,0);
+				 place(i,j,0);
 				 System.out.println(Arrays.deepToString(bigBoard));
 
 				 }
@@ -533,13 +534,24 @@ public class AiBoard{
 	  * Updates the AIBoard to match the current state of the game Board
 	  */
 	 public void dummyUpdate(){
-		 for(int i = 0;i<bigBoard[0].length;i++){
-			 for(int j = 0;j<bigBoard.length;j++){
-				 bigBoard[i][j] = board.getBigBoard()[i][j];
+		 for(int row = 0;row<bigBoard[0].length;row++){
+			 for(int col = 0;col<bigBoard.length;col++){
+				int value = board.getBigBoard()[row][col];
+				bigBoard[row][col] = value;
+				if(row<=2 && col <=2){
+					a[row][col]=value;
+				}
+				if(row <= 2 && col >= 3){
+					b[row][col-3] = value;
+				}
+				if(row >=3 && col <= 2){
+					c[row-3][col] = value;
+				}
+				if(row >=3 && col >= 3){
+					d[row-3][col-3] = value;
+				}
 			 }
 		 }
-		 update();
 	 }		
 	
-
 }
