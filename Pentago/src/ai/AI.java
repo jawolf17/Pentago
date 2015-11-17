@@ -8,11 +8,11 @@ package ai;
 
 import models.Board;
 import models.Player;
-
 import java.util.Random;
-
 import controller.Controller;
 import util.Maneuver;
+import java.util.Timer;
+import java.util.TimerTask;
 
 public class AI extends Player {
 
@@ -34,24 +34,27 @@ public class AI extends Player {
 	 * Takes the turn for the AI, currently places at the first available space, does not rotate.
 	 */
 	public void turn(){
-		try {
-			Thread.sleep(500);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		Timer t = new Timer();
+		long delay = 500;
 		super.turn();
 		_test_board.dummyUpdate();
-		switch(_diff){
-			case "easy": turnEasy();
-			break;
-			case "medium":
-			case "hard":
-			default: turnEasy(); 
+		TimerTask task = new TimerTask(){
+			@Override
+			public void run(){
+				switch(_diff){ 
+		    		case "easy": turnEasy();
+		    		break;
+		    		case "medium":
+		    		case "hard":
+		    		default: turnEasy();
+				}
 			}
+	     };
+	     t.schedule(task, delay);
 		}
 	
-	private void turnEasy(){
+	
+	private void  turnEasy(){
 		Boolean turnTaken = false;
 		Maneuver win_result = _test_board.canWin();
 		//Winning placement check
