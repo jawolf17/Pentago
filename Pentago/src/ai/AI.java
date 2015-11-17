@@ -34,6 +34,12 @@ public class AI extends Player {
 	 * Takes the turn for the AI, currently places at the first available space, does not rotate.
 	 */
 	public void turn(){
+		try {
+			Thread.sleep(500);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		super.turn();
 		_test_board.dummyUpdate();
 		switch(_diff){
@@ -70,8 +76,6 @@ public class AI extends Player {
 				else{
 					_con.dummyRotate();
 				}
-				setRotated(true);
-				setPlaced(true);
 				turnTaken = true;
 			}
 		}
