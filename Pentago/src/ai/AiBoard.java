@@ -29,7 +29,7 @@ public class AiBoard{
 	public AiBoard(Board curBoard,Controller controller) {
 		board = curBoard;
 		control = controller;
-		bigBoard = curBoard.getBigBoard();
+		bigBoard = new int[6][6];
 		a = curBoard.getQuadA();
 		b = curBoard.getQuadB();
 		c = curBoard.getQuadC();
@@ -534,7 +534,11 @@ public class AiBoard{
 	  * Updates the AIBoard to match the current state of the game Board
 	  */
 	 public void dummyUpdate(){
-		 bigBoard = board.getBigBoard();
+		 for(int i = 0;i<bigBoard[0].length;i++){
+			 for(int j = 0;j<bigBoard.length;j++){
+				 bigBoard[i][j] = board.getBigBoard()[i][j];
+			 }
+		 }
 		 update();
 	 }		
 	
