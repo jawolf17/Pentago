@@ -309,55 +309,41 @@ public class Board {
 	}
 	
 	/**
-	 * Creates a copy of all boards, that if changed will not affect the game state.
-	 * @return a deep copy of all matrices on the board. Pos 0-3 are quadrants, 4 is BigBoard.
+	 * gets Quad A
+	 * 
+	 * @param none
+	 * @return int[][] representing QuadA
 	 */
-	public ArrayList<int[][]> getDeepCopies(){
-		ArrayList<int[][]> matricies = new ArrayList<int[][]>(4); 
-		ArrayList<int[][]> quadrants = new ArrayList<int[][]>(Arrays.asList(a,b,c,d));
-		
-		//Creates copy of all Quadrants
-		for(int i=0;i<quadrants.size();i++){
-			int[][] new_quad = new int[3][3];
-			int[][] cur = quadrants.get(i);
-			for(int j=0; j<2;j++){
-				int[] col = cur[j];
-				new_quad[j] = col.clone(); 
-			}
-			matricies.add(new_quad);
-		}
-		//Creates Copy of bigBoard
-		int[][] bigCopy = new int[6][6];
-		for(int i=0;i<bigBoard[0].length;i++){
-			bigCopy[i] = bigBoard[i].clone();
-		}
-		matricies.add(bigCopy);
-		
-		return matricies;
+	public int[][] getQuadA(){
+		return a;
 	}
-	
-    
 	/**
-	 * Protected means that only classes inside the package and subclasses can call this
-	 * If we really want these methods to never be accessed board and AiBoard can be moved to a separate package
+	 * gets Quad B
+	 * 
+	 * @param none
+	 * @return int[][] representing QuadB
 	 */
-	protected void setBigBoard(int [][] board){
-		bigBoard = board;
+	public int[][] getQuadB(){
+		return b;
 	}
-	
-	protected void setA(int[][] a_prime){
-		a = a_prime;
+	/**
+	 * gets Quad C
+	 * 
+	 * @param none
+	 * @return int[][] representing QuadC
+	 */
+	public int[][] getQuadC(){
+		return c;
 	}
-	
-	protected void setB(int[][] b_prime){
-		b = b_prime;
-	}
-	
-	protected void setC(int[][] c_prime){
-		c = c_prime;
-	}
-	
-	protected void setD(int[][] d_prime){
-		d = d_prime;
+	/**
+	 * gets Quad D
+	 * 
+	 * @param none
+	 * @return int[][] representing QuadD
+	 */
+	public int[][] getQuadD(){
+		return d;
 	}
 }
+	
+	
