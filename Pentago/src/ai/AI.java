@@ -59,6 +59,7 @@ public class AI extends Player {
 		Maneuver win_result = _test_board.canWin();
 		//Winning placement check
 		if(win_result.row>-1&&win_result.column>-1){
+			System.out.println("Win");
 			_con.place(win_result.row,win_result.column,getColor());
 			if(win_result.quad!='z'){
 				 _con.rotate(win_result.quad, win_result.dir);
@@ -70,6 +71,7 @@ public class AI extends Player {
 		}
 		//Prevent D
 		if(!turnTaken){
+			System.out.println("Loss");
 			Maneuver loss_prevent = _test_board.canLose();
 			if(loss_prevent.row>-1&&loss_prevent.column>-1){
 				_con.place(loss_prevent.row, loss_prevent.column, getColor());
@@ -84,6 +86,7 @@ public class AI extends Player {
 		}
 		//Random Placement
 		if(!turnTaken){
+			System.out.println("Random");
 			Random r = new Random();
 			while(!turnTaken){
 				int row = r.nextInt(6);
