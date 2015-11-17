@@ -447,8 +447,8 @@ public class AiBoard{
 					 if(isWon() == op){
 						 p.row = i;
 						 p.column = j;
-						 p.quad = quadCheck(i,j);
-						 p.dir = true;
+						 
+						 
 						 System.out.println(1);
 						 return p;
 					 }
