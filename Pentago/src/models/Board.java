@@ -239,7 +239,7 @@ public class Board {
 				}
 			}
 		}
-		return org;
+		return 0;
 	}
 	private void update(){
 		for(int i = 0;i<a[0].length;i++){

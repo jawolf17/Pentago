@@ -41,7 +41,7 @@ public class Game {
 	public void upCheck(){
 		//May need more body here as project continues
 		
-		if(!(_board.isWon()==0)){
+		if((_board.isWon()==0)){
 			//Needs to give control to GUI...somehow
 			
 			if(_currentp.equals(_p1) && _p1.getPlaced() && _p1.getRotated()){

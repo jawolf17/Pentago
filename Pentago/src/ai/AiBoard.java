@@ -244,7 +244,7 @@ public class AiBoard{
 				}
 			}
 		}
-		return org;
+		return 0;
 	}
 	private void update(){
 		for(int i = 0;i<a[0].length;i++){
@@ -442,11 +442,14 @@ public class AiBoard{
 			 for(int j = 0;j<big.length;j++){
 				 if(!isOccupied(i,j)){
 					 place(i,j,op);
+					 System.out.println("OP:"+op);
+					 System.out.println("isWon:"+isWon());
 					 if(isWon() == op){
 						 p.row = i;
 						 p.column = j;
 						 p.quad = quadCheck(i,j);
 						 p.dir = true;
+						 System.out.println(1);
 						 return p;
 					 }
 					 rotate('a',true);
@@ -455,6 +458,7 @@ public class AiBoard{
 						 p.column = j;
 						 p.quad = 'a';
 						 p.dir = true;
+						 System.out.println(2);
 						 return p;
 						 
 					 }
@@ -465,6 +469,7 @@ public class AiBoard{
 						 p.column = j;
 						 p.quad = 'a';
 						 p.dir = false;
+						 System.out.println(3);
 						 return p;
 					 }
 					 rotate('a',true);
@@ -474,6 +479,7 @@ public class AiBoard{
 						 p.column = j;
 						 p.quad = 'b';
 						 p.dir = true;
+						 System.out.println(4);
 						 return p;
 					 }
 					 rotate('b',false);
@@ -483,6 +489,7 @@ public class AiBoard{
 						 p.column = j;
 						 p.quad = 'b';
 						 p.dir = false;
+						 System.out.println(5);
 						 return p;
 					 }
 					 rotate('b',true);
@@ -492,6 +499,7 @@ public class AiBoard{
 						 p.column = j;
 						 p.quad = 'c';
 						 p.dir = true;
+						 System.out.println(6);
 						 return p;
 					 }
 					 rotate('c',false);
