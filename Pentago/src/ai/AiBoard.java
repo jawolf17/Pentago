@@ -345,7 +345,13 @@ public class AiBoard{
 						 p.row = i;
 						 p.column = j;
 						 p.quad = quadCheck(i,j);
-						 p.dir = true;
+						 rotate(p.quad,true);
+						 if(isWon() == op){
+							 p.dir = false;
+						 }
+						 else{
+							 p.dir = true;
+						 }
 						 return p;
 					 }
 					 rotate('a',true);

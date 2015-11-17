@@ -24,6 +24,7 @@ import javax.swing.JPanel;
 import javax.swing.WindowConstants;
 
 import controller.Controller;
+import models.Player;
 
 public class Gui{
 	private JPanel info;
@@ -329,8 +330,8 @@ public class Gui{
 			boardGui.repaint();
 			
 		}
-		public void endGame() {
-			JOptionPane.showMessageDialog(frame,cont.getCurrentPlayer().getName()+" has won");
+		public void endGame(Player p) {
+			JOptionPane.showMessageDialog(frame,p.getName()+" has won");
 			main.dispose();
 			
 		}

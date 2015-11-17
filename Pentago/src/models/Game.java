@@ -41,8 +41,8 @@ public class Game {
 	 */
 	public void upCheck(){
 		//May need more body here as project continues
-		
-		if((_board.isWon()==0)){
+		int win = _board.isWon();
+		if((win==0)){
 			//Needs to give control to GUI...somehow
 			if(_currentp.equals(_p1) && _p1.getPlaced() && _p1.getRotated()){
 				_currentp = _p2;
@@ -55,7 +55,13 @@ public class Game {
 		    //_currentp.setTurn(false);
 		}
 		else{
-			_controller.endGame();
+			if(_p1.getColor()==win){
+				_controller.endGame(_p1);
+			}
+			else{
+				_controller.endGame(_p2);
+			}
+			
 		}
 		
 	}

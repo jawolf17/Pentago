@@ -78,8 +78,8 @@ public class Controller {
 	public String getPlayerTwoName(){
 		return PlayerTwoName;
 	}
-	public void endGame() {
-		GUI.endGame();
+	public void endGame(Player p) {
+		GUI.endGame(p);
 		
 	}
 }
