@@ -526,7 +526,6 @@ public class AiBoard{
 					 rotate('d',true);
 
 				 }
-				 System.out.println(Arrays.deepToString(bigBoard));
 				 dummyUpdate();
 			 }
 		 }
@@ -555,6 +554,9 @@ public class AiBoard{
 				}
 			 }
 		 }
+	 }
+	 public void dummyUpdate2(){
+		 
 	 }
 	public Maneuver winPlan() {
 		 int op;
@@ -651,7 +653,8 @@ public class AiBoard{
 									 return p;
 								 }
 								 rotate('d',true);
-								 place(k,l,0);
+								 dummyUpdate();
+								 place(i,j,op);
 
 							 }
 							 }
@@ -659,8 +662,116 @@ public class AiBoard{
 							 
 						 }
 					 }
-					 
-				 System.out.println(Arrays.deepToString(bigBoard));
+				 dummyUpdate();
+			 }
+		 
+		 return p;
+
+	}
+	public Maneuver losePlan() {
+		 int op;
+		 if(control.getCurrentPlayer().getColor() == 1){
+			 op = 2;
+		 }
+		 else{
+			 op = 1;
+		 }
+		 Maneuver p = new Maneuver();
+		 for(int i = 0;i<bigBoard[0].length;i++){
+			 for(int j = 0;j<bigBoard.length;j++){
+				 if(!isOccupied(i,j)){
+					 place(i,j,op);
+					 for(int k = 0;k<bigBoard[0].length;k++){
+						 for(int l = 0;l<bigBoard[0].length;l++){
+							 if(!isOccupied(k,l)){
+								 place(k,l,op);
+								 if(isWon() == op){
+									 p.row = k;
+									 p.column = l;
+									 return p;
+								 }
+								 rotate('a',true);
+								 if(isWon() == op){
+									 p.row = k;
+									 p.column = l;
+									 p.quad = 'a';
+									 p.dir = true;
+									 return p;
+									 
+								 }
+								 rotate('a',false);
+								 rotate('a',false);
+								 if(isWon() == op){
+									 p.row = k;
+									 p.column = l;
+									 p.quad = 'a';
+									 p.dir = false;
+									 return p;
+								 }
+								 rotate('a',true);
+								 rotate('b',true);
+								 if(isWon() == op){
+									 p.row = k;
+									 p.column = l;
+									 p.quad = 'b';
+									 p.dir = true;
+									 return p;
+								 }
+								 rotate('b',false);
+								 rotate('b',false);
+								 if(isWon() == op){
+									 p.row = k;
+									 p.column = l;
+									 p.quad = 'b';
+									 p.dir = false;
+									 return p;
+								 }
+								 rotate('b',true);
+								 rotate('c',true);
+								 if(isWon() == op){
+									 p.row = k;
+									 p.column = l;
+									 p.quad = 'c';
+									 p.dir = true;
+									 return p;
+								 }
+								 rotate('c',false);
+								 rotate('c',false);
+								 if(isWon() == op){
+									 p.row = k;
+									 p.column = l;
+									 p.quad = 'c';
+									 p.dir = false;
+									 return p;
+								 }
+								 rotate('c',true);
+								 rotate('d',true);
+								 if(isWon() == op){
+									 p.row = k;
+									 p.column = l;
+									 p.quad = 'd';
+									 p.dir = true;
+									 return p;
+								 }
+								 rotate('d',false);
+								 rotate('d',false);
+								 if(isWon() == op){
+									 p.row = k;
+									 p.column = l;
+									 p.quad = 'd';
+									 p.dir = false;
+									 return p;
+								 }
+								 rotate('d',true);
+								 dummyUpdate();
+								 place(i,j,op);
+
+							 }
+							 }
+						 }
+							 
+						 }
+					 }
 				 dummyUpdate();
 			 }
 		 

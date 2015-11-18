@@ -155,6 +155,20 @@ public class AI extends Player {
 		}
 		if(!turnTaken){
 			System.out.println("Plan");
+			Maneuver lose_plan = _test_board.losePlan();
+			if(lose_plan.row>-1&&lose_plan.column>-1){
+				_con.place(lose_plan.row, lose_plan.column, getColor());
+				if(lose_plan.quad !='z'){
+					_con.rotate(lose_plan.quad,lose_plan.dir);
+				}
+				else{
+					_con.dummyRotate();
+				}
+				turnTaken = true;
+			}
+		}
+		if(!turnTaken){
+			System.out.println("Plan");
 			Maneuver win_plan = _test_board.winPlan();
 			if(win_plan.row>-1&&win_plan.column>-1){
 				_con.place(win_plan.row, win_plan.column, getColor());
