@@ -19,7 +19,12 @@ public class Game {
 		_controller = c;
 		_board = new Board(_controller);
 		_controller.setBoard(_board);
-		_p1 = new Player(1,name1);
+		if(name1.substring(0, 3).equals("CPU")){
+			_p1 = new AI(1,name1,_board,_controller);
+		}
+		else{
+			_p1 = new Player(1,name1);
+		}
 		if(name2.substring(0, 3).equals("CPU")){
 			_p2 = new AI(2,name2,_board,_controller);
 		}

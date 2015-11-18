@@ -43,9 +43,6 @@ public class AiBoard{
 	 * @return boolean
 	 */
 	public boolean place(int row, int col,int p){
-		if((row > 5 || col > 5) || (p<=0 || p>3)|| isOccupied(row,col)){
-			return false;	
-		}
 		if(row <= 2 && col <= 2){
 			if(row!=1&&col!=1&&neutral_a){
 				neutral_a=false;
@@ -558,6 +555,117 @@ public class AiBoard{
 				}
 			 }
 		 }
-	 }		
+	 }
+	public Maneuver winPlan() {
+		 int op;
+		 if(control.getCurrentPlayer().getColor() == 1){
+			 op = 1;
+		 }
+		 else{
+			 op = 2;
+		 }
+		 Maneuver p = new Maneuver();
+		 for(int i = 0;i<bigBoard[0].length;i++){
+			 for(int j = 0;j<bigBoard.length;j++){
+				 if(!isOccupied(i,j)){
+					 place(i,j,op);
+					 for(int k = 0;k<bigBoard[0].length;k++){
+						 for(int l = 0;l<bigBoard[0].length;l++){
+							 if(!isOccupied(k,l)){
+								 place(k,l,op);
+								 if(isWon() == op){
+									 p.row = k;
+									 p.column = l;
+									 return p;
+								 }
+								 rotate('a',true);
+								 if(isWon() == op){
+									 p.row = k;
+									 p.column = l;
+									 p.quad = 'a';
+									 p.dir = true;
+									 return p;
+									 
+								 }
+								 rotate('a',false);
+								 rotate('a',false);
+								 if(isWon() == op){
+									 p.row = k;
+									 p.column = l;
+									 p.quad = 'a';
+									 p.dir = false;
+									 return p;
+								 }
+								 rotate('a',true);
+								 rotate('b',true);
+								 if(isWon() == op){
+									 p.row = k;
+									 p.column = l;
+									 p.quad = 'b';
+									 p.dir = true;
+									 return p;
+								 }
+								 rotate('b',false);
+								 rotate('b',false);
+								 if(isWon() == op){
+									 p.row = k;
+									 p.column = l;
+									 p.quad = 'b';
+									 p.dir = false;
+									 return p;
+								 }
+								 rotate('b',true);
+								 rotate('c',true);
+								 if(isWon() == op){
+									 p.row = k;
+									 p.column = l;
+									 p.quad = 'c';
+									 p.dir = true;
+									 return p;
+								 }
+								 rotate('c',false);
+								 rotate('c',false);
+								 if(isWon() == op){
+									 p.row = k;
+									 p.column = l;
+									 p.quad = 'c';
+									 p.dir = false;
+									 return p;
+								 }
+								 rotate('c',true);
+								 rotate('d',true);
+								 if(isWon() == op){
+									 p.row = k;
+									 p.column = l;
+									 p.quad = 'd';
+									 p.dir = true;
+									 return p;
+								 }
+								 rotate('d',false);
+								 rotate('d',false);
+								 if(isWon() == op){
+									 p.row = k;
+									 p.column = l;
+									 p.quad = 'd';
+									 p.dir = false;
+									 return p;
+								 }
+								 rotate('d',true);
+								 place(k,l,0);
+
+							 }
+							 }
+						 }
+							 
+						 }
+					 }
+					 
+				 System.out.println(Arrays.deepToString(bigBoard));
+				 dummyUpdate();
+			 }
+		 
+		 return p;
+
+	}		
 	
 }

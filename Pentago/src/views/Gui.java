@@ -332,7 +332,7 @@ public class Gui{
 		}
 		public void endGame(Player p) {
 			JOptionPane.showMessageDialog(frame,p.getName()+" has won");
-			main.dispose();
+			System.exit(0);
 			
 		}
 	}

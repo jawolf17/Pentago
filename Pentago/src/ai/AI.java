@@ -44,7 +44,8 @@ public class AI extends Player {
 				switch(_diff){ 
 		    		case "easy": turnEasy();
 		    		break;
-		    		case "medium":
+		    		case "medium": turnMed();
+		    		break;
 		    		case "hard":
 		    		default: turnEasy();
 				}
@@ -77,6 +78,88 @@ public class AI extends Player {
 				_con.place(loss_prevent.row, loss_prevent.column, getColor());
 				if(loss_prevent.quad !='z'){
 					_con.rotate( loss_prevent.quad, loss_prevent.dir);
+				}
+				else{
+					_con.dummyRotate();
+				}
+				turnTaken = true;
+			}
+		}
+		//Random Placement
+		if(!turnTaken){
+			System.out.println("Random");
+			Random r = new Random();
+			while(!turnTaken){
+				int row = r.nextInt(6);
+				int col = r.nextInt(6);
+				if(!_board_actual.isOccupied(row, col)){
+					_con.place(row, col, getColor());
+					turnTaken=true;
+				}
+			}
+				if(!_board_actual.isNeutral()){
+					int quad_int = r.nextInt(4);
+					int quadr_dir = r.nextInt(2);
+					char quad_char='a';
+					switch(quad_int){
+						case 0: quad_char = 'a';
+						break;
+						case 1: quad_char = 'b';
+						break;
+						case 2: quad_char = 'c';
+						break;
+						case 3: quad_char = 'd';
+						break;
+					}
+						if(quadr_dir==0){
+							_con.rotate(quad_char, false);
+						}
+						else{
+							_con.rotate(quad_char,true);
+						}
+				}
+				else{
+					_con.dummyRotate();
+				}
+			}
+		}
+	private void  turnMed(){
+		Boolean turnTaken = false;
+		Maneuver win_result = _test_board.canWin();
+		//Winning placement check
+		if(win_result.row>-1&&win_result.column>-1){
+			System.out.println("Win");
+			_con.place(win_result.row,win_result.column,getColor());
+			if(win_result.quad!='z'){
+				 _con.rotate(win_result.quad, win_result.dir);
+			}
+			else{
+				_con.dummyRotate();
+			}
+			turnTaken=true;
+		}
+		//Prevent D
+		if(!turnTaken){
+			System.out.println("Loss");
+			Maneuver loss_prevent = _test_board.canLose();
+			if(loss_prevent.row>-1&&loss_prevent.column>-1){
+				_con.place(loss_prevent.row, loss_prevent.column, getColor());
+				if(loss_prevent.quad !='z'){
+					_con.rotate( loss_prevent.quad, loss_prevent.dir);
+				}
+				else{
+					_con.dummyRotate();
+				}
+				turnTaken = true;
+			}
+		}
+		if(!turnTaken){
+			System.out.println("Plan");
+			Maneuver win_plan = _test_board.winPlan();
+			if(win_plan.row>-1&&win_plan.column>-1){
+				_con.place(win_plan.row, win_plan.column, getColor());
+				if(win_plan.quad !='z'){
+					_con.rotate(win_plan.quad,win_plan.dir);
 				}
 				else{
 					_con.dummyRotate();
