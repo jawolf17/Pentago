@@ -57,7 +57,7 @@ public class AI extends Player {
 	
 	private void  turnEasy(){
 		Boolean turnTaken = false;
-		Maneuver win_result = _test_board.canWin();
+		Maneuver win_result = _test_board.canWinorLose(getColor());
 		//Winning placement check
 		if(win_result.row>-1&&win_result.column>-1){
 			System.out.println("Win");
@@ -73,7 +73,14 @@ public class AI extends Player {
 		//Prevent D
 		if(!turnTaken){
 			System.out.println("Loss");
-			Maneuver loss_prevent = _test_board.canLose();
+			int op;
+			if(getColor() == 1){
+				op = 2;
+			}
+			else{
+				op = 1;
+			}
+			Maneuver loss_prevent = _test_board.canWinorLose(op);
 			if(loss_prevent.row>-1&&loss_prevent.column>-1){
 				_con.place(loss_prevent.row, loss_prevent.column, getColor());
 				if(loss_prevent.quad !='z'){
@@ -125,7 +132,7 @@ public class AI extends Player {
 		}
 	private void  turnMed(){
 		Boolean turnTaken = false;
-		Maneuver win_result = _test_board.canWin();
+		Maneuver win_result = _test_board.canWinorLose(getColor());
 		//Winning placement check
 		if(win_result.row>-1&&win_result.column>-1){
 			System.out.println("Win");
@@ -140,8 +147,15 @@ public class AI extends Player {
 		}
 		//Prevent D
 		if(!turnTaken){
+			int op;
+			if(getColor() == 1){
+				op = 2;
+			}
+			else{
+				op = 1;
+			}
 			System.out.println("Loss");
-			Maneuver loss_prevent = _test_board.canLose();
+			Maneuver loss_prevent = _test_board.canWinorLose(op);
 			if(loss_prevent.row>-1&&loss_prevent.column>-1){
 				_con.place(loss_prevent.row, loss_prevent.column, getColor());
 				if(loss_prevent.quad !='z'){
@@ -155,7 +169,14 @@ public class AI extends Player {
 		}
 		if(!turnTaken){
 			System.out.println("Plan");
-			Maneuver lose_plan = _test_board.losePlan();
+			int op;
+			if(getColor() == 1){
+				op = 2;
+			}
+			else{
+				op = 1;
+			}
+			Maneuver lose_plan = _test_board.plan(op);
 			if(lose_plan.row>-1&&lose_plan.column>-1){
 				_con.place(lose_plan.row, lose_plan.column, getColor());
 				if(lose_plan.quad !='z'){
@@ -169,7 +190,7 @@ public class AI extends Player {
 		}
 		if(!turnTaken){
 			System.out.println("Plan");
-			Maneuver win_plan = _test_board.winPlan();
+			Maneuver win_plan = _test_board.plan(getColor());
 			if(win_plan.row>-1&&win_plan.column>-1){
 				_con.place(win_plan.row, win_plan.column, getColor());
 				if(win_plan.quad !='z'){
