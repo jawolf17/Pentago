@@ -23,7 +23,7 @@ public class AI extends Player {
 	
 	public AI(int c, String n ,Board b, Controller cont) {
 		super(c, n);
-		_diff = n.substring(4).toLowerCase();
+		_diff = n.substring(3).toLowerCase();
 		_board_actual = b;
 		_con = cont;
 		_test_board= new AiBoard(b,cont);
@@ -56,6 +56,7 @@ public class AI extends Player {
 	
 	
 	private void  turnEasy(){
+		System.out.println("Turn Easy");
 		Boolean turnTaken = false;
 		Maneuver win_result = _test_board.canWinorLose(getColor());
 		//Winning placement check
@@ -131,6 +132,7 @@ public class AI extends Player {
 			}
 		}
 	private void  turnMed(){
+		System.out.println("Turn MED");
 		Boolean turnTaken = false;
 		Maneuver win_result = _test_board.canWinorLose(getColor());
 		//Winning placement check
