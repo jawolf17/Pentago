@@ -4,6 +4,7 @@ import models.Board;
 import models.Game;
 import models.Player;
 import views.Menu;
+import views.NiceMenu;
 import views.Gui;
 
 public class Controller {
@@ -48,7 +49,8 @@ public class Controller {
 	 * Calls on the GUI to launch the menu for player selection.
 	 */
 	public void launchMenu(){
-		new Menu(this);
+		//new Menu(this);
+		new NiceMenu(this);
 	}
 	
 	/**

@@ -1,0 +1,139 @@
+/**
+ * New Launcher for Pentago. Improved Layout and Feel
+ */
+package views;
+
+import java.awt.*;
+import java.awt.event.ActionListener;
+import java.awt.event.FocusEvent;
+import java.awt.event.FocusListener;
+
+import javax.swing.*;
+import controller.Controller;
+import java.awt.event.ActionEvent;
+
+public class NiceMenu {
+	private Controller _cont;
+	private JFrame _frame;
+	private JTabbedPane _tabbedPane;
+
+	public NiceMenu(Controller c){
+		_cont=c;
+		try {
+			UIManager.setLookAndFeel("javax.swing.plaf.nimbus.NimbusLookAndFeel");
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (InstantiationException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IllegalAccessException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (UnsupportedLookAndFeelException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		_frame = new JFrame("Pentago");
+		_frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		_tabbedPane = new JTabbedPane();
+		_frame.add(_tabbedPane);
+		addComponents();
+		Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
+		_frame.setLocation(dim.width/3, dim.height/3);
+		_frame.setSize(600,125);
+		_frame.setVisible(true);
+	}
+	
+	/**
+	 * Adds components to the main JFrame
+	 */
+	private void addComponents(){
+		 _tabbedPane.addTab("1-Player",createSinglePanel());
+		 _tabbedPane.addTab("2-Player", createNameEntry());
+	}
+	
+	/**
+	 * Creates the panel for the Single Player Options
+	 * @return JPanel 
+	 */
+	private JPanel createSinglePanel(){
+		JPanel panel = new JPanel(new FlowLayout());
+		String[] diff = {"Easy","Medium","Hard"};
+		JComboBox<String> aiSelect = new JComboBox<String>(diff);
+		JButton play = new JButton("PLAY!");
+		play.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				String diff = aiSelect.getItemAt(aiSelect.getSelectedIndex());
+				if(!diff.equals("Hard")){
+					_cont.createGame("You","CPU"+diff);
+					_frame.dispose();
+				}
+				else{
+					JOptionPane.showMessageDialog(_frame, "Sorry that feature is not implemented yet");
+				}
+				
+			}
+			
+		});
+		panel.add(aiSelect);
+		panel.add(play);
+		return panel;
+	}
+	
+	/**
+	 * Creates the panel for the Two Player Options
+	 * @return JPanel 
+	 */
+	private JPanel createNameEntry(){
+		JPanel panel = new JPanel(new FlowLayout());
+		JTextField player1 = new JTextField("Player 1");
+		player1.setColumns(20);
+		player1.addFocusListener(new FocusListener(){
+
+			@Override
+			public void focusGained(FocusEvent e) {
+				player1.selectAll();		
+			}
+			@Override
+			public void focusLost(FocusEvent e) {
+				if(player1.getText().equals("")){
+					player1.setText("Player 1");
+				}
+			}
+	     });
+		JTextField player2 = new JTextField("Player 2");
+		player2.setColumns(20);
+		player2.addFocusListener(new FocusListener(){
+
+			@Override
+			public void focusGained(FocusEvent e) {
+				player2.selectAll();		
+			}
+			@Override
+			public void focusLost(FocusEvent e) {
+				if(player2.getText().equals("")){
+					player2.setText("Player 2");
+				}
+			}
+			
+		});
+		JButton play = new JButton("PLAY!");
+		play.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				_cont.createGame(player1.getText(),player2.getText());
+				_frame.dispose();
+			}
+			
+		});
+		panel.add(player1);
+		panel.add(player2);
+		panel.add(play);
+		
+		return panel;
+	}
+}
+
