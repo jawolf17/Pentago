@@ -430,7 +430,7 @@ public class AiBoard{
 				}
 			}
 		}
-		if(p.row == -1){
+		/*if(p.row == -1){
 			for(int i = 0;i<1;i++){
 				for(int j = 0;j<1;j++){
 					int temp = b[i][j];
@@ -582,7 +582,7 @@ public class AiBoard{
 				}
 			}
 			}
-		}
+		}*/
 		return p;
 	}
 	public Maneuver plan(int op) {
