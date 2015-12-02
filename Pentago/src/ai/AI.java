@@ -115,6 +115,7 @@ public class AI extends Player {
 				char quad_char = 'z';
 				boolean dir = false;
 				//while(_test_board.leadsToLose(quad_char,dir)==true){
+
 					int quad_int = r.nextInt(4);
 					int quadr_dir = r.nextInt(2);
 					quad_char='a';
@@ -134,6 +135,7 @@ public class AI extends Player {
 						else{
 							dir = false;
 						}
+
 				//}
 				aiRotate(quad_char, dir);
 			}
