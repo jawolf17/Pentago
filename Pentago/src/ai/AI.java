@@ -56,14 +56,12 @@ public class AI extends Player {
 		}
 	
 	private void  turnEasy(){
-		System.out.println("Turn Easy");
 		Boolean turnTaken = false;
 		Maneuver win_result = _test_board.canWinorLose(getColor());
 		//Winning placement check
 		if(win_result.row>-1&&win_result.column>-1){
 			Random r = new Random();
 			if(r.nextInt(100)>30){
-				System.out.println("Win");
 				_con.place(win_result.row,win_result.column,getColor());
 				if(win_result.quad!='z'){
 					 aiRotate(win_result.quad, win_result.dir);
@@ -78,7 +76,6 @@ public class AI extends Player {
 		if(!turnTaken){
 			Random r = new Random();
 			if(r.nextInt(100)>30){
-				System.out.println("Loss");
 				int op;
 				if(getColor() == 1){
 					op = 2;
@@ -94,8 +91,6 @@ public class AI extends Player {
 					}
 					else{
 						if(!_board_actual.isNeutral()){
-							System.out.println("Attempts random rotate for lose prevention");
-							
 							char quad_char = 'z';
 							boolean dir = false;
 							while(_test_board.leadsToLose(quad_char,dir)==true){
@@ -118,7 +113,6 @@ public class AI extends Player {
 										dir = false;
 									}
 							}
-							System.out.println(""+quad_char+dir);
 							aiRotate(quad_char, dir);
 						}
 						else{
@@ -130,7 +124,6 @@ public class AI extends Player {
 			}
 		}
 		//Random Placement
-		System.out.println("Random");
 		Random r = new Random();
 		while(!turnTaken){
 			int row = r.nextInt(6);
@@ -141,8 +134,6 @@ public class AI extends Player {
 			}
 			}
 		if(!_board_actual.isNeutral()){
-			System.out.println("Attempts random rotate for lose prevention");
-			
 			char quad_char = 'z';
 			boolean dir = false;
 			while(_test_board.leadsToLose(quad_char,dir)==true){
@@ -165,7 +156,6 @@ public class AI extends Player {
 						dir = false;
 					}
 			}
-			System.out.println(""+quad_char+dir);
 			aiRotate(quad_char, dir);
 		}
 		else{
@@ -174,12 +164,10 @@ public class AI extends Player {
 	}
 	
 	private void  turnMed(){
-		System.out.println("Turn Med");
 		Boolean turnTaken = false;
 		Maneuver win_result = _test_board.canWinorLose(getColor());
 		//Winning placement check
 		if(win_result.row>-1&&win_result.column>-1){
-			System.out.println("Win");
 			_con.place(win_result.row,win_result.column,getColor());
 			if(win_result.quad!='z'){
 				 aiRotate(win_result.quad, win_result.dir);
@@ -191,7 +179,6 @@ public class AI extends Player {
 		}
 		//Prevent D
 		if(!turnTaken){
-			System.out.println("Loss");
 			int op;
 			if(getColor() == 1){
 				op = 2;
@@ -207,7 +194,6 @@ public class AI extends Player {
 				}
 				else{
 					if(!_board_actual.isNeutral()){
-						System.out.println("Attempts random rotate for lose prevention");
 						Random r = new Random();
 						char quad_char = 'z';
 						boolean dir = false;
@@ -231,7 +217,6 @@ public class AI extends Player {
 									dir = false;
 								}
 						}
-						System.out.println(""+quad_char+dir);
 						aiRotate(quad_char, dir);
 					}
 					else{
@@ -244,7 +229,6 @@ public class AI extends Player {
 		}
 		//Random Placement
 		if(!turnTaken){
-			System.out.println("Random");
 			Random r = new Random();
 			while(!turnTaken){
 				int row = r.nextInt(6);
@@ -255,7 +239,6 @@ public class AI extends Player {
 				}
 				}
 				if(!_board_actual.isNeutral()){
-					System.out.println("Attempts random rotate for random placement");
 					char quad_char = 'z';
 					boolean dir = false;
 					while(_test_board.leadsToLose(quad_char,dir)==true){
@@ -280,7 +263,6 @@ public class AI extends Player {
 								dir = false;
 							}
 					}
-					System.out.println(""+quad_char+dir);
 					aiRotate(quad_char, dir);
 				}
 				else{
@@ -289,12 +271,10 @@ public class AI extends Player {
 		}
 	}
 	private void  turnHard(){
-		System.out.println("Turn Hard");
 		Boolean turnTaken = false;
 		Maneuver win_result = _test_board.canWinorLose(getColor());
 		//Winning placement check
 		if(win_result.row>-1&&win_result.column>-1){
-			System.out.println("Win");
 			_con.place(win_result.row,win_result.column,getColor());
 			if(win_result.quad!='z'){
 				 aiRotate(win_result.quad, win_result.dir);
@@ -313,7 +293,6 @@ public class AI extends Player {
 			else{
 				op = 1;
 			}
-			System.out.println("Loss");
 			Maneuver loss_prevent = _test_board.canWinorLose(op);
 			if(loss_prevent.row>-1&&loss_prevent.column>-1){
 				_con.place(loss_prevent.row, loss_prevent.column, getColor());
@@ -322,7 +301,6 @@ public class AI extends Player {
 				}
 				else{
 					if(!_board_actual.isNeutral()){
-						System.out.println("Attempts random rotate for lose prevention");
 						Random r = new Random();
 						char quad_char = 'z';
 						boolean dir = false;
@@ -346,7 +324,6 @@ public class AI extends Player {
 									dir = false;
 								}
 						}
-						System.out.println(""+quad_char+dir);
 						aiRotate(quad_char, dir);
 					}
 					else{
@@ -409,7 +386,6 @@ public class AI extends Player {
 			}
 		}*/
 		if(!turnTaken){
-			System.out.println("Plan for ai");
 			Maneuver win_plan = _test_board.plan(getColor());
 			if(win_plan.row>-1&&win_plan.column>-1){
 				_con.place(win_plan.row, win_plan.column, getColor());
@@ -418,7 +394,6 @@ public class AI extends Player {
 				}
 				else{
 					if(!_board_actual.isNeutral()){
-						System.out.println("Attempts random rotate for lose prevention");
 						Random r = new Random();
 						char quad_char = 'z';
 						boolean dir = false;
@@ -442,7 +417,6 @@ public class AI extends Player {
 									dir = false;
 								}
 						}
-						System.out.println(""+quad_char+dir);
 						aiRotate(quad_char, dir);
 					}
 					else{
@@ -453,15 +427,11 @@ public class AI extends Player {
 			}
 		}
 		if(!turnTaken){
-			System.out.println("TwoRow");
 			Maneuver tworow = _test_board.twoRow();
-			System.out.println(tworow.row);
-			System.out.println(tworow.column);
 			if(!(tworow.row == -1 && tworow.column == -1)){
 				_con.place(tworow.row,tworow.column,getColor());
 				turnTaken=true;
 				if(!_board_actual.isNeutral()){
-					System.out.println("Attempts random rotate for lose prevention");
 					Random r = new Random();
 					char quad_char = 'z';
 					boolean dir = false;
@@ -485,7 +455,6 @@ public class AI extends Player {
 								dir = false;
 							}
 					}
-					System.out.println(""+quad_char+dir);
 					aiRotate(quad_char, dir);
 				}
 				else{
@@ -495,7 +464,6 @@ public class AI extends Player {
 		}
 		//Random Placement
 		if(!turnTaken){
-			System.out.println("Random");
 			Random r = new Random();
 			while(!turnTaken){
 				int row = r.nextInt(6);
@@ -506,7 +474,6 @@ public class AI extends Player {
 				}
 			}
 			if(!_board_actual.isNeutral()){
-				System.out.println("Attempts random rotate for lose prevention");
 				char quad_char = 'z';
 				boolean dir = false;
 				while(_test_board.leadsToLose(quad_char,dir)==true){
@@ -529,7 +496,6 @@ public class AI extends Player {
 							dir = false;
 						}
 				}
-				System.out.println(""+quad_char+dir);
 				aiRotate(quad_char, dir);
 			}
 			else{
