@@ -262,7 +262,7 @@ public class AI extends Player {
 				turnTaken = true;
 			}
 		}
-		if(!turnTaken){
+		/*if(!turnTaken){
 			System.out.println("Plan");
 			int op;
 			if(getColor() == 1){
@@ -271,19 +271,49 @@ public class AI extends Player {
 			else{
 				op = 1;
 			}
-			Maneuver lose_plan = _test_board.plan(op);
+			Maneuver lose_plan = _test_board.plan(getColor());
 			if(lose_plan.row>-1&&lose_plan.column>-1){
 				_con.place(lose_plan.row, lose_plan.column, getColor());
 				if(lose_plan.quad !='z'){
 					aiRotate(lose_plan.quad,lose_plan.dir);
 				}
 				else{
-					_con.dummyRotate();
+					if(!_board_actual.isNeutral()){
+						Random r = new Random();
+						char quad_char = 'z';
+						boolean dir = false;
+						while(_test_board.leadsToLose(quad_char,dir)==true){
+							int quad_int = r.nextInt(4);
+							int quadr_dir = r.nextInt(2);
+							quad_char='a';
+							switch(quad_int){
+								case 0: quad_char = 'a';
+								break;
+								case 1: quad_char = 'b';
+								break;
+								case 2: quad_char = 'c';
+								break;
+								case 3: quad_char = 'd';
+								break;
+							}
+								if(quadr_dir==0){
+									dir = true;
+								}
+								else{
+									dir = false;
+								}
+						}
+						aiRotate(quad_char, dir);
+					}
+					else{
+						_con.dummyRotate();
+					}
+					
 				}
 				turnTaken = true;
 			}
-		}
-		if(!turnTaken){
+		}*/
+		/*if(!turnTaken){
 			System.out.println("Plan");
 			Maneuver win_plan = _test_board.plan(getColor());
 			if(win_plan.row>-1&&win_plan.column>-1){
@@ -292,9 +322,79 @@ public class AI extends Player {
 					aiRotate(win_plan.quad,win_plan.dir);
 				}
 				else{
-					_con.dummyRotate();
+					if(!_board_actual.isNeutral()){
+						Random r = new Random();
+						char quad_char = 'z';
+						boolean dir = false;
+						while(_test_board.leadsToLose(quad_char,dir)==true){
+							int quad_int = r.nextInt(4);
+							int quadr_dir = r.nextInt(2);
+							quad_char='a';
+							switch(quad_int){
+								case 0: quad_char = 'a';
+								break;
+								case 1: quad_char = 'b';
+								break;
+								case 2: quad_char = 'c';
+								break;
+								case 3: quad_char = 'd';
+								break;
+							}
+								if(quadr_dir==0){
+									dir = true;
+								}
+								else{
+									dir = false;
+								}
+						}
+						aiRotate(quad_char, dir);
+					}
+					else{
+						_con.dummyRotate();
+					}
 				}
 				turnTaken = true;
+			}
+		}*/
+		if(!turnTaken){
+			System.out.println("TwoRow");
+			Maneuver tworow = _test_board.twoRow();
+			System.out.println(tworow.row);
+			System.out.println(tworow.column);
+			if(!(tworow.row == -1 && tworow.column == -1)){
+				_con.place(tworow.row,tworow.column,getColor());
+				turnTaken=true;
+				if(!_board_actual.isNeutral()){
+					
+					char quad_char = 'z';
+					boolean dir = false;
+					while(_test_board.leadsToLose(quad_char,dir)==true){
+						Random r = new Random();
+						int quad_int = r.nextInt(4);
+						int quadr_dir = r.nextInt(2);
+						quad_char='a';
+						switch(quad_int){
+							case 0: quad_char = 'a';
+							break;
+							case 1: quad_char = 'b';
+							break;
+							case 2: quad_char = 'c';
+							break;
+							case 3: quad_char = 'd';
+							break;
+						}
+							if(quadr_dir==0){
+								dir = true;
+							}
+							else{
+								dir = false;
+							}
+					}
+					aiRotate(quad_char, dir);
+				}
+				else{
+					_con.dummyRotate();
+				}
 			}
 		}
 		//Random Placement
