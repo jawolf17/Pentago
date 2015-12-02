@@ -164,7 +164,6 @@ public class Board {
 		}
 	}
 	public boolean isNeutral(){
-		System.out.println(neutral_a || neutral_b || neutral_c || neutral_d);
 		return neutral_a || neutral_b || neutral_c || neutral_d;
 	}
 	/**

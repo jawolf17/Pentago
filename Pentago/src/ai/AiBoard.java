@@ -73,6 +73,20 @@ public class AiBoard{
 		}
 		return true;
 	}
+	//hard coded for now, didnt bother figuring out math behind it
+	private int[][] clockwise(int[][] quad){
+		int[][] temp = new int[3][3];
+		temp[0][0] = quad[2][0];
+		temp[0][1] = quad[1][0];
+		temp[0][2] = quad[0][0];
+		temp[1][0] = quad[2][1];
+		temp[1][1] = quad[1][1];
+		temp[1][2] = quad[0][1];
+		temp[2][0] = quad[2][2];
+		temp[2][1] = quad[1][2];
+		temp[2][2] = quad[0][2];
+		return temp;
+	}
 	/**
 	 * rotate is used to rotate one quadrant a quarter turn.
 	 * 
@@ -116,20 +130,6 @@ public class AiBoard{
 			}
 			update('d');
 		}
-	}
-	//hard coded for now, didnt bother figuring out math behind it
-	private int[][] clockwise(int[][] quad){
-		int[][] temp = new int[3][3];
-		temp[0][0] = quad[2][0];
-		temp[0][1] = quad[1][0];
-		temp[0][2] = quad[0][0];
-		temp[1][0] = quad[2][1];
-		temp[1][1] = quad[1][1];
-		temp[1][2] = quad[0][1];
-		temp[2][0] = quad[2][2];
-		temp[2][1] = quad[1][2];
-		temp[2][2] = quad[0][2];
-		return temp;
 	}
 	private int[][] counterclockwise(int[][] quad){
 		int[][] temp = new int[3][3];
@@ -343,12 +343,20 @@ public class AiBoard{
 		 return p;
 	 }
 	 public boolean leadsToLose(char quad,boolean dir){
-		 rotate(quad,dir);
-		 if(isWon()==1){
-			 return false;
+		 if(quad != 'z'){
+			 dummyUpdate();
+			 rotate(quad,dir);
+			 if(isWon()!=0){
+				 System.out.println("Testing this line of code to see if it ever runs");
+				 return true;
+			 }
+			 rotate(quad,!dir);
+			 dummyUpdate();
 		 }
-		 rotate(quad,!dir);
-		 return true;
+		 else{
+			 return true;
+		 }
+		 return false;
 	 }
 	 /**
 	  * Updates the AIBoard to match the current state of the game Board
@@ -477,7 +485,7 @@ public class AiBoard{
 								}
 							}
 							else{
-								if((i>1&&j>1)&&a[i-1][j-1] == 0){
+								if((i>1&&j>1)&&b[i-1][j-1] == 0){
 									p.row = i-1;
 									p.column = j-1+3;
 									return p;
