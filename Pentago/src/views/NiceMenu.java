@@ -64,6 +64,7 @@ public class NiceMenu {
 	private void addComponents(){
 		 _tabbedPane.addTab("1-Player",createSinglePanel());
 		 _tabbedPane.addTab("2-Player", createNameEntry());
+		 _tabbedPane.addTab("Rules", createRuleTab());
 	}
 	
 	/**
@@ -141,6 +142,21 @@ public class NiceMenu {
 		panel.add(play);
 		
 		return panel;
+	}
+	
+	private JPanel createRuleTab(){
+		JPanel rules = new JPanel();
+		JButton button = new JButton("Rules");
+		button.addActionListener(new ActionListener(){
+
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				JOptionPane.showMessageDialog(_frame, "Pshhhh you think we would tell YOU how to play");				
+			}
+			
+		});
+		rules.add(button);
+		return rules;
 	}
 }
 
