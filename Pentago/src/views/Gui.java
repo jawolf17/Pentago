@@ -1,6 +1,7 @@
 package views;
 
 import java.awt.Color;
+import java.awt.Container;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.GridBagConstraints;
@@ -15,11 +16,13 @@ import java.io.IOException;
 
 import javax.imageio.ImageIO;
 import javax.swing.BorderFactory;
+import javax.swing.BoxLayout;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.WindowConstants;
@@ -342,8 +345,43 @@ public class Gui{
 			else{
 				verb="has";
 			}
-			JOptionPane.showMessageDialog(frame,p.getName()+ " " + verb+ " won");
-			System.exit(0);
+			JFrame end_game = new JFrame("Game Over");
+			end_game.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+			JPanel pane = new JPanel();
+			pane.setLayout(new BoxLayout(pane,BoxLayout.Y_AXIS));
+			JButton play = new JButton("Play Again");
+			JButton end = new JButton("Exit");
+			play.addActionListener(new ActionListener(){
+
+				@Override
+				public void actionPerformed(ActionEvent arg0) {
+					end_game.dispose();
+					main.dispose();
+					cont.launchMenu();
+				}
+				
+			});
+			end.addActionListener( new ActionListener(){
+
+				@Override
+				public void actionPerformed(ActionEvent e) {
+					System.exit(0);
+					
+				}
+				
+			});
+			JLabel message = new JLabel(p.getName()+ " " + verb+ " won");
+			message.setAlignmentX(Container.CENTER_ALIGNMENT);
+			play.setAlignmentX(Container.CENTER_ALIGNMENT);
+			end.setAlignmentX(Container.CENTER_ALIGNMENT);
+			pane.add(message);
+			pane.add(play);
+			pane.add(end);
+			end_game.add(pane);
+			end_game.setBounds(0, 0, 400, 150);
+			end_game.setLocationRelativeTo(main);
+			end_game.setAlwaysOnTop(true);
+			end_game.setVisible(true);
 			
 		}
 	}
