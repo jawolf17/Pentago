@@ -115,25 +115,25 @@ public class AI extends Player {
 				char quad_char = 'z';
 				boolean dir = false;
 //				while(_test_board.leadsToLose(quad_char,dir)==true){
-//					int quad_int = r.nextInt(4);
-//					int quadr_dir = r.nextInt(2);
-//					quad_char='a';
-//					switch(quad_int){
-//						case 0: quad_char = 'a';
-//						break;
-//						case 1: quad_char = 'b';
-//						break;
-//						case 2: quad_char = 'c';
-//						break;
-//						case 3: quad_char = 'd';
-//						break;
-//					}
-//						if(quadr_dir==0){
-//							dir = true;
-//						}
-//						else{
-//							dir = false;
-//						}
+					int quad_int = r.nextInt(4);
+					int quadr_dir = r.nextInt(2);
+					quad_char='a';
+					switch(quad_int){
+						case 0: quad_char = 'a';
+						break;
+						case 1: quad_char = 'b';
+						break;
+						case 2: quad_char = 'c';
+						break;
+						case 3: quad_char = 'd';
+						break;
+					}
+						if(quadr_dir==0){
+							dir = true;
+						}
+						else{
+							dir = false;
+						}
 //				}
 				aiRotate(quad_char, dir);
 			}
