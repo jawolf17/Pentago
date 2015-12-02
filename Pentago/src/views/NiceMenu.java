@@ -7,7 +7,11 @@ import java.awt.*;
 import java.awt.event.ActionListener;
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 
+import javax.imageio.ImageIO;
 import javax.swing.*;
 import controller.Controller;
 import java.awt.event.ActionEvent;
@@ -36,6 +40,15 @@ public class NiceMenu {
 		}
 		_frame = new JFrame("Pentago");
 		_frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		_frame.add(new JPanel());
+		_frame.getContentPane().setLayout(new BoxLayout(_frame.getContentPane(), BoxLayout.Y_AXIS));
+		try {
+			BufferedImage image = ImageIO.read(new File("logo.png"));
+			JLabel image_pane = new JLabel(new ImageIcon(image));
+			_frame.add(image_pane);
+		} catch (IOException e) {
+			//Carry on
+		}
 		_tabbedPane = new JTabbedPane();
 		_frame.add(_tabbedPane);
 		addComponents();
@@ -66,15 +79,9 @@ public class NiceMenu {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				String diff = aiSelect.getItemAt(aiSelect.getSelectedIndex());
-				if(!diff.equals("Hard")){
-					_cont.createGame("You","CPU"+diff);
-					_frame.dispose();
-				}
-				else{
-					JOptionPane.showMessageDialog(_frame, "Sorry that feature is not implemented yet");
-				}
-				
+				String diff = aiSelect.getItemAt(aiSelect.getSelectedIndex());	
+				_cont.createGame("You","CPU"+diff);
+				_frame.dispose();	
 			}
 			
 		});
