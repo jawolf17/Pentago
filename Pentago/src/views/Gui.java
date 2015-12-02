@@ -336,7 +336,7 @@ public class Gui{
 		}
 		public void endGame(Player p) {
 			String verb = "";
-			if(cont.getPlayerOneName().equals("You")){
+			if(p.getName().equals("You")){
 				verb = "have";
 			}
 			else{
