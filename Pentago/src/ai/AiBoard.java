@@ -347,7 +347,6 @@ public class AiBoard{
 			 dummyUpdate();
 			 rotate(quad,dir);
 			 if(isWon()!=0){
-				 System.out.println("Testing this line of code to see if it ever runs");
 				 return true;
 			 }
 			 rotate(quad,!dir);
@@ -408,7 +407,6 @@ public class AiBoard{
 							if(a[i][j+2]==0){
 								p.row = i;
 								p.column = j+2;
-								System.out.println("P returned");
 								return p;
 							}
 						}
@@ -497,7 +495,6 @@ public class AiBoard{
 			}
 		}
 		else if(p.row == -1){
-			System.out.println("Testing if statement to make sure in right quad");
 			for(int i = 0;i<2;i++){
 				for(int j = 0;j<2;j++){
 					if(c[i][j] == 1 || c[i][j] == 2){
@@ -519,7 +516,6 @@ public class AiBoard{
 							}
 						}
 						if(c[i][j+1]==temp){
-							System.out.println("Testing for if statement in twoRow");
 							if(j == 0){	
 								if(c[i][j+2]==0){
 									p.row = i+3;
