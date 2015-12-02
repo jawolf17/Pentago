@@ -9,7 +9,10 @@ import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.PrintWriter;
+import java.io.UnsupportedEncodingException;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
@@ -22,8 +25,8 @@ public class NiceMenu {
 	private JTabbedPane _tabbedPane;
 	private String _scale;
 
-	public NiceMenu(Controller c){
-		_scale="medium";
+	public NiceMenu(Controller c,String size){
+		_scale=size;
 		_cont=c;
 		try {
 			UIManager.setLookAndFeel("javax.swing.plaf.nimbus.NimbusLookAndFeel");
@@ -183,6 +186,17 @@ public class NiceMenu {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				_scale = scale.getItemAt(scale.getSelectedIndex()).toLowerCase();
+				try {
+					PrintWriter write = new PrintWriter("src/settings.ptg","UTF-8");
+					write.println(_scale);
+					write.close();
+				} catch (FileNotFoundException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} catch (UnsupportedEncodingException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 				
 			}
 			

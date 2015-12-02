@@ -13,7 +13,10 @@ public class Controller {
 	private String PlayerTwoName;
 	private Gui GUI;
 	private Game game;
-	public Controller(){
+	private String _size;
+	
+	public Controller(String size){
+		_size=size;
 		b=null;
 	}
 	public void place(int row, int col,int c){
@@ -50,7 +53,7 @@ public class Controller {
 	 */
 	public void launchMenu(){
 		//new Menu(this);
-		new NiceMenu(this);
+		new NiceMenu(this,_size);
 	}
 	
 	/**
