@@ -43,7 +43,7 @@ public class NiceMenu {
 		_frame.add(new JPanel());
 		_frame.getContentPane().setLayout(new BoxLayout(_frame.getContentPane(), BoxLayout.Y_AXIS));
 		try {
-			BufferedImage image = ImageIO.read(new File("logo.png"));
+			BufferedImage image = ImageIO.read(new File("src/logo.png"));
 			JLabel image_pane = new JLabel(new ImageIcon(image));
 			_frame.add(image_pane);
 		} catch (IOException e) {
@@ -53,8 +53,8 @@ public class NiceMenu {
 		_frame.add(_tabbedPane);
 		addComponents();
 		Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
-		_frame.setLocation(dim.width/3, dim.height/3);
-		_frame.setSize(600,125);
+		_frame.setLocation(dim.width/5, dim.height/5);
+		_frame.setSize(900,400);
 		_frame.setVisible(true);
 	}
 	
