@@ -384,12 +384,14 @@ public class AiBoard{
 							if(a[i+2][j]==0){
 								p.row = i+2;
 								p.column = j;
+								return p;
 							}
 						}
 						else{
 							if(a[i-1][j] == 0){
 								p.row = i-1;
 								p.column = j;
+								return p;
 							}
 						}
 					}
@@ -398,12 +400,14 @@ public class AiBoard{
 							if(a[i][j+2]==0){
 								p.row = i;
 								p.column = j+2;
+								return p;
 							}
 						}
 						else{
 							if(a[i][j-1] == 0){
 								p.row = i;
 								p.column = j-1;
+								return p;
 							}
 						}
 					}
@@ -412,12 +416,14 @@ public class AiBoard{
 							if(a[i+2][j+2]==0){
 								p.row = i+2;
 								p.column = j+2;
+								return p;
 							}
 						}
 						else{
 							if(a[i-1][j-1] == 0){
 								p.row = i-1;
 								p.column = j-1;
+								return p;
 							}
 						}
 					}
