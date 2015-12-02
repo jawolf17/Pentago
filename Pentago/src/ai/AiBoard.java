@@ -375,8 +375,8 @@ public class AiBoard{
 	 }
 	public Maneuver twoRow(){
 		Maneuver p = new Maneuver();
-		for(int i = 0;i<1;i++){
-			for(int j = 0;j<1;j++){
+		for(int i = 0;i<2;i++){
+			for(int j = 0;j<2;j++){
 				if(a[i][j] == 1 || a[i][j] == 2){
 					int temp = a[i][j];
 					if(a[i+1][j]==temp){
@@ -421,7 +421,7 @@ public class AiBoard{
 							}
 						}
 						else{
-							if(a[i-1][j-1] == 0){
+							if((i>1&&j>1)&&a[i-1][j-1] == 0){
 								p.row = i-1;
 								p.column = j-1;
 								return p;
@@ -431,159 +431,177 @@ public class AiBoard{
 				}
 			}
 		}
-		/*if(p.row == -1){
-			for(int i = 0;i<1;i++){
-				for(int j = 0;j<1;j++){
-					int temp = b[i][j];
-					if(b[i][j] == 1 || b[i][j] ==2){
-					if(b[i+1][j]==temp){
-						if(i == 0){	
-							if(b[i+2][j]==0){
-								p.row = i+2;
-								p.column = j+3;
+		if(p.row == -1){
+			for(int i = 0;i<2;i++){
+				for(int j = 0;j<2;j++){
+					if(b[i][j] == 1 || b[i][j] == 2){
+						int temp = b[i][j];
+						if(b[i+1][j]==temp){
+							if(i == 0){	
+								if(b[i+2][j]==0){
+									p.row = i+2;
+									p.column = j+3;
+									return p;
+								}
+							}
+							else{
+								if(b[i-1][j] == 0){
+									p.row = i-1;
+									p.column = j+3;
+									return p;
+								}
 							}
 						}
-						else{
-							if(b[i-1][j] == 0){
-								p.row = i-1;
-								p.column = j+3;
+						if(b[i][j+1]==temp){
+							if(j == 0){	
+								if(b[i][j+2]==0){
+									p.row = i;
+									p.column = j+2+3;
+									return p;
+								}
+							}
+							else{
+								if(b[i][j-1] == 0){
+									p.row = i;
+									p.column = j-1+3;
+									return p;
+								}
 							}
 						}
-					}
-					if(b[i][j+1]==temp){
-						if(j == 0){	
-							if(b[i][j+2]==0){
-								p.row = i;
-								p.column = j+2+3;
+						if(b[i+1][j+1]==temp){
+							if(i == 0 && j == 0){	
+								if(b[i+2][j+2]==0){
+									p.row = i+2;
+									p.column = j+2+3;
+									return p;
+								}
 							}
-						}
-						else{
-							if(b[i][j-1] == 0){
-								p.row = i;
-								p.column = j-1+3;
-							}
-						}
-					}
-					if(b[i+1][j+1]==temp){
-						if(i == 0 && j == 0){	
-							if(b[i+2][j+2]==0){
-								p.row = i+2;
-								p.column = j+2+3;
-							}
-						}
-						else{
-							if(b[i-1][j-1] == 0){
-								p.row = i-1;
-								p.column = j-1+3;
+							else{
+								if((i>1&&j>1)&&a[i-1][j-1] == 0){
+									p.row = i-1;
+									p.column = j-1+3;
+									return p;
+								}
 							}
 						}
 					}
 				}
 			}
-			}
 		}
 		else if(p.row == -1){
-			for(int i = 0;i<1;i++){
-				for(int j = 0;j<1;j++){
+			for(int i = 0;i<2;i++){
+				for(int j = 0;j<2;j++){
 					if(c[i][j] == 1 || c[i][j] == 2){
-					int temp = c[i][j];
-					if(c[i+1][j]==temp){
-						if(i == 0){	
-							if(c[i+2][j]==0){
-								p.row = i+2+3;
-								p.column = j;
+						int temp = c[i][j];
+						if(c[i+1][j]==temp){
+							if(i == 0){	
+								if(c[i+2][j]==0){
+									p.row = i+2+3;
+									p.column = j;
+									return p;
+								}
+							}
+							else{
+								if(c[i-1][j] == 0){
+									p.row = i-1+3;
+									p.column = j;
+									return p;
+								}
 							}
 						}
-						else{
-							if(c[i-1][j] == 0){
-								p.row = i-1+3;
-								p.column = j;
+						if(c[i][j+1]==temp){
+							if(j == 0){	
+								if(c[i][j+2]==0){
+									p.row = i+3;
+									p.column = j+2;
+									return p;
+								}
+							}
+							else{
+								if(c[i][j-1] == 0){
+									p.row = i+3;
+									p.column = j-1;
+									return p;
+								}
 							}
 						}
-					}
-					if(c[i][j+1]==temp){
-						if(j == 0){	
-							if(c[i][j+2]==0){
-								p.row = i+3;
-								p.column = j+2;
+						if(c[i+1][j+1]==temp){
+							if(i == 0 && j == 0){	
+								if(c[i+2][j+2]==0){
+									p.row = i+2+3;
+									p.column = j+2;
+									return p;
+								}
 							}
-						}
-						else{
-							if(c[i][j-1] == 0){
-								p.row = i+3;
-								p.column = j-1;
-							}
-						}
-					}
-					if(c[i+1][j+1]==temp){
-						if(i == 0 && j == 0){	
-							if(c[i+2][j+2]==0){
-								p.row = i+2+3;
-								p.column = j+2;
-							}
-						}
-						else{
-							if(c[i-1][j-1] == 0){
-								p.row = i-1+3;
-								p.column = j-1;
+							else{
+								if((i>1&&j>1)&&c[i-1][j-1] == 0){
+									p.row = i-1+3;
+									p.column = j-1;
+									return p;
+								}
 							}
 						}
 					}
 				}
-			}
 			}
 		}
 		else if(p.row == -1){
-			for(int i = 0;i<1;i++){
-				for(int j = 0;j<1;j++){
-					if(d[i][j]==1 || d[i][j] ==2){
-					int temp = d[i][j];
-					if(d[i+1][j]==temp){
-						if(i == 0){	
-							if(d[i+2][j]==0){
-								p.row = i+2+3;
-								p.column = j+3;
+			for(int i = 0;i<2;i++){
+				for(int j = 0;j<2;j++){
+					if(d[i][j] == 1 || d[i][j] == 2){
+						int temp = d[i][j];
+						if(d[i+1][j]==temp){
+							if(i == 0){	
+								if(d[i+2][j]==0){
+									p.row = i+2+3;
+									p.column = j+3;
+									return p;
+								}
+							}
+							else{
+								if(d[i-1][j] == 0){
+									p.row = i-1+3;
+									p.column = j+3;
+									return p;
+								}
 							}
 						}
-						else{
-							if(d[i-1][j] == 0){
-								p.row = i-1+3;
-								p.column = j+3;
+						if(d[i][j+1]==temp){
+							if(j == 0){	
+								if(d[i][j+2]==0){
+									p.row = i+3;
+									p.column = j+2+3;
+									return p;
+								}
+							}
+							else{
+								if(d[i][j-1] == 0){
+									p.row = i+3;
+									p.column = j-1+3;
+									return p;
+								}
 							}
 						}
-					}
-					if(d[i][j+1]==temp){
-						if(j == 0){	
-							if(d[i][j+2]==0){
-								p.row = i+3;
-								p.column = j+2+3;
+						if(d[i+1][j+1]==temp){
+							if(i == 0 && j == 0){	
+								if(d[i+2][j+2]==0){
+									p.row = i+2+3;
+									p.column = j+2+3;
+									return p;
+								}
 							}
-						}
-						else{
-							if(d[i][j-1] == 0){
-								p.row = i+3;
-								p.column = j-1+3;
-							}
-						}
-					}
-					if(d[i+1][j+1]==temp){
-						if(i == 0 && j == 0){	
-							if(d[i+2][j+2]==0){
-								p.row = i+2+3;
-								p.column = j+2+3;
-							}
-						}
-						else{
-							if(d[i-1][j-1] == 0){
-								p.row = i-1+3;
-								p.column = j-1+3;
+							else{
+								if((i>1&&j>1)&&d[i-1][j-1] == 0){
+									p.row = i-1+3;
+									p.column = j-1+3;
+									return p;
+								}
 							}
 						}
 					}
 				}
 			}
-			}
-		}*/
+		}
 		return p;
 	}
 	public Maneuver plan(int op) {
