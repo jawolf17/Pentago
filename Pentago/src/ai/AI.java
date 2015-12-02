@@ -27,7 +27,7 @@ public class AI extends Player {
 		_board_actual = b;
 		_con = cont;
 		_test_board= new AiBoard(b,cont);
-		_test_board.dummyUpdate();
+		_test_board.dummyUpdate();	
 	}
 	
 	/**
@@ -64,7 +64,7 @@ public class AI extends Player {
 			System.out.println("Win");
 			_con.place(win_result.row,win_result.column,getColor());
 			if(win_result.quad!='z'){
-				 _con.rotate(win_result.quad, win_result.dir);
+				 aiRotate(win_result.quad, win_result.dir);
 			}
 			else{
 				_con.dummyRotate();
@@ -85,7 +85,7 @@ public class AI extends Player {
 			if(loss_prevent.row>-1&&loss_prevent.column>-1){
 				_con.place(loss_prevent.row, loss_prevent.column, getColor());
 				if(loss_prevent.quad !='z'){
-					_con.rotate( loss_prevent.quad, loss_prevent.dir);
+					aiRotate( loss_prevent.quad, loss_prevent.dir);
 				}
 				else{
 					_con.dummyRotate();
@@ -120,10 +120,10 @@ public class AI extends Player {
 						break;
 					}
 						if(quadr_dir==0){
-							_con.rotate(quad_char, false);
+							aiRotate(quad_char, false);
 						}
 						else{
-							_con.rotate(quad_char,true);
+							aiRotate(quad_char,true);
 						}
 				}
 				else{
@@ -140,7 +140,7 @@ public class AI extends Player {
 			System.out.println("Win");
 			_con.place(win_result.row,win_result.column,getColor());
 			if(win_result.quad!='z'){
-				 _con.rotate(win_result.quad, win_result.dir);
+				 aiRotate(win_result.quad, win_result.dir);
 			}
 			else{
 				_con.dummyRotate();
@@ -161,7 +161,7 @@ public class AI extends Player {
 			if(loss_prevent.row>-1&&loss_prevent.column>-1){
 				_con.place(loss_prevent.row, loss_prevent.column, getColor());
 				if(loss_prevent.quad !='z'){
-					_con.rotate( loss_prevent.quad, loss_prevent.dir);
+					aiRotate( loss_prevent.quad, loss_prevent.dir);
 				}
 				else{
 					_con.dummyRotate();
@@ -182,7 +182,7 @@ public class AI extends Player {
 			if(lose_plan.row>-1&&lose_plan.column>-1){
 				_con.place(lose_plan.row, lose_plan.column, getColor());
 				if(lose_plan.quad !='z'){
-					_con.rotate(lose_plan.quad,lose_plan.dir);
+					aiRotate(lose_plan.quad,lose_plan.dir);
 				}
 				else{
 					_con.dummyRotate();
@@ -196,7 +196,7 @@ public class AI extends Player {
 			if(win_plan.row>-1&&win_plan.column>-1){
 				_con.place(win_plan.row, win_plan.column, getColor());
 				if(win_plan.quad !='z'){
-					_con.rotate(win_plan.quad,win_plan.dir);
+					aiRotate(win_plan.quad,win_plan.dir);
 				}
 				else{
 					_con.dummyRotate();
@@ -231,10 +231,10 @@ public class AI extends Player {
 						break;
 					}
 						if(quadr_dir==0){
-							_con.rotate(quad_char, false);
+							aiRotate(quad_char, false);
 						}
 						else{
-							_con.rotate(quad_char,true);
+							aiRotate(quad_char,true);
 						}
 				}
 				else{
@@ -242,5 +242,18 @@ public class AI extends Player {
 				}
 			}
 		}
+
+	public void aiRotate(char quad, boolean dir ){
+		Timer t = new Timer();
+		long delay = 500;
+		TimerTask task = new TimerTask(){
+			@Override
+			public void run(){
+				_con.rotate(quad, dir);
+	     }
+		};
+	     t.schedule(task, delay);	
 	}
+
+}
 	
