@@ -315,7 +315,7 @@ public class AI extends Player {
 				turnTaken = true;
 			}
 		}*/
-		/*if(!turnTaken){
+		if(!turnTaken){
 			System.out.println("Plan");
 			Maneuver win_plan = _test_board.plan(getColor());
 			if(win_plan.row>-1&&win_plan.column>-1){
@@ -357,7 +357,7 @@ public class AI extends Player {
 				}
 				turnTaken = true;
 			}
-		}*/
+		}
 		if(!turnTaken){
 			System.out.println("TwoRow");
 			Maneuver tworow = _test_board.twoRow();
