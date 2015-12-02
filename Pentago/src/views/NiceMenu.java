@@ -8,8 +8,10 @@ import java.awt.event.ActionListener;
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
 import java.awt.image.BufferedImage;
+import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.io.UnsupportedEncodingException;
@@ -161,11 +163,34 @@ public class NiceMenu {
 
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				JOptionPane.showMessageDialog(_frame, "Pshhhh you think we would tell YOU how to play");				
+				JFrame rules = new JFrame("Rules");
+				JPanel panel = new JPanel();
+				panel.setLayout(new FlowLayout());
+				BufferedImage image;
+				BufferedImage text;
+				try {
+					image = ImageIO.read(new File("src/model.png"));
+					JLabel image_label = new JLabel(new ImageIcon(image));
+					panel.add(image_label);
+					
+					text = ImageIO.read(new File("src/rules.png"));
+					JLabel text_label = new JLabel(new ImageIcon(text));
+					panel.add(text_label);
+					
+				
+				} catch (FileNotFoundException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} catch (IOException e) {
+					//Carry On
+				}
+				rules.add(panel);
+				rules.pack();
+				rules.setVisible(true);
 			}
 			
 		});
-		rules.add(button);
+		rules.add(button); 
 		return rules;
 	}
 	
@@ -180,6 +205,15 @@ public class NiceMenu {
 		options.add(option_set);
 		String[] sizes = {"Small","Medium","Large"};
 		JComboBox<String> scale = new JComboBox<String>(sizes);
+		switch(_scale){
+			case "small": scale.setSelectedItem("Small");
+			break;
+			case "medium": scale.setSelectedItem("Medium");
+			break;
+			case "large": scale.setSelectedItem("Large");
+			break;
+		}
+		scale.setSelectedItem(_scale);
 		options.add(scale);
 		JButton set = new JButton("Set");
 		set.addActionListener(new ActionListener(){
