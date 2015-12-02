@@ -20,6 +20,7 @@ public class NiceMenu {
 	private Controller _cont;
 	private JFrame _frame;
 	private JTabbedPane _tabbedPane;
+	private String _scale;
 
 	public NiceMenu(Controller c){
 		_cont=c;
@@ -64,6 +65,7 @@ public class NiceMenu {
 	private void addComponents(){
 		 _tabbedPane.addTab("1-Player",createSinglePanel());
 		 _tabbedPane.addTab("2-Player", createNameEntry());
+		 _tabbedPane.addTab("Options",createOptionsTab());
 		 _tabbedPane.addTab("Rules", createRuleTab());
 	}
 	
@@ -157,6 +159,28 @@ public class NiceMenu {
 		});
 		rules.add(button);
 		return rules;
+	}
+	
+	private JPanel createOptionsTab(){
+		JPanel options = new JPanel();
+		options.setLayout(new FlowLayout());
+		JLabel option_set= new JLabel("GUI Size");
+		options.add(option_set);
+		String[] sizes = {"Small","Medium","Large"};
+		JComboBox<String> scale = new JComboBox<String>(sizes);
+		options.add(scale);
+		JButton set = new JButton("Set");
+		set.addActionListener(new ActionListener(){
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				_scale = scale.getItemAt(scale.getSelectedIndex());
+				
+			}
+			
+		});
+		options.add(set);
+		
+		return options;
 	}
 }
 

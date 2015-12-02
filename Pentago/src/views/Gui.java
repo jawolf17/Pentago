@@ -8,6 +8,7 @@ import java.awt.GridBagLayout;
 import java.awt.GridLayout;
 import java.awt.Image;
 import java.awt.Insets;
+import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
@@ -39,6 +40,7 @@ public class Gui{
 	private JButton endTurn;
 	
 	public Gui(Controller con){
+		Dimension screen = Toolkit.getDefaultToolkit().getScreenSize();
 		main = new JFrame("Pentago");
 		main.getContentPane().setLayout(new FlowLayout());
 		info = new JPanel(new FlowLayout());
@@ -255,8 +257,7 @@ public class Gui{
 	    // set up the jframe, then display it
 	    main.setBackground(Color.WHITE);
 	    main.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-	    main.setPreferredSize(new Dimension(1000, 900));
-	    main.pack();
+	    main.setBounds(0,0,screen.width,screen.height);
 	    main.setLocationRelativeTo(null);
 	    main.setVisible(true);
 	  }
