@@ -400,6 +400,7 @@ public class AiBoard{
 							if(a[i][j+2]==0){
 								p.row = i;
 								p.column = j+2;
+								System.out.println("P returned");
 								return p;
 							}
 						}
