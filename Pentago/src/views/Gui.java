@@ -335,7 +335,14 @@ public class Gui{
 			
 		}
 		public void endGame(Player p) {
-			JOptionPane.showMessageDialog(frame,p.getName()+" has won");
+			String verb = "";
+			if(cont.getPlayerOneName().equals("You")){
+				verb = "have";
+			}
+			else{
+				verb="has";
+			}
+			JOptionPane.showMessageDialog(frame,p.getName()+ " " + verb+ " won");
 			System.exit(0);
 			
 		}
