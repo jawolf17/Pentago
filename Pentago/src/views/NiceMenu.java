@@ -146,6 +146,10 @@ public class NiceMenu {
 		return panel;
 	}
 	
+	/**
+	 * Creates the panel for the rule tab
+	 * @return JPanel
+	 */
 	private JPanel createRuleTab(){
 		JPanel rules = new JPanel();
 		JButton button = new JButton("Rules");
@@ -161,6 +165,10 @@ public class NiceMenu {
 		return rules;
 	}
 	
+	/**
+	 * Creates the panel for the option tab
+	 * @return  JPanel
+	 */
 	private JPanel createOptionsTab(){
 		JPanel options = new JPanel();
 		options.setLayout(new FlowLayout());
