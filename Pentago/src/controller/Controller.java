@@ -31,13 +31,17 @@ public class Controller {
 	public void rotate(char q,boolean r){
 		if(getCurrentPlayer().getRotated()==false && getCurrentPlayer().getPlaced() == true){
 			b.rotate(q, r);
+			getCurrentPlayer().setRotated(true);
+			game.upCheck();
 		}
-		getCurrentPlayer().setRotated(true);
-		game.upCheck();
+		
 	}
 	public void dummyRotate(){
-		getCurrentPlayer().setRotated(true);
-		game.upCheck();
+		if(getCurrentPlayer().getRotated()==false && getCurrentPlayer().getPlaced() == true){
+			getCurrentPlayer().setRotated(true);
+			game.upCheck();
+		}
+		
 	}
 	public boolean isNeutral(){
 		return b.isNeutral();

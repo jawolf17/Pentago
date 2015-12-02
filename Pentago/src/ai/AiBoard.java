@@ -497,6 +497,7 @@ public class AiBoard{
 			}
 		}
 		else if(p.row == -1){
+			System.out.println("Testing if statement to make sure in right quad");
 			for(int i = 0;i<2;i++){
 				for(int j = 0;j<2;j++){
 					if(c[i][j] == 1 || c[i][j] == 2){
@@ -518,6 +519,7 @@ public class AiBoard{
 							}
 						}
 						if(c[i][j+1]==temp){
+							System.out.println("Testing for if statement in twoRow");
 							if(j == 0){	
 								if(c[i][j+2]==0){
 									p.row = i+3;
