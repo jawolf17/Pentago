@@ -109,12 +109,12 @@ public class AI extends Player {
 				_con.place(row, col, getColor());
 				turnTaken=true;
 			}
-		}
+			}
 			if(!_board_actual.isNeutral()){
-				
+				System.out.println("Got Heerejerjerer");
 				char quad_char = 'z';
 				boolean dir = false;
-				while(_test_board.leadsToLose(quad_char,dir)==true){
+				//while(_test_board.leadsToLose(quad_char,dir)==true){
 					int quad_int = r.nextInt(4);
 					int quadr_dir = r.nextInt(2);
 					quad_char='a';
@@ -134,7 +134,7 @@ public class AI extends Player {
 						else{
 							dir = false;
 						}
-				}
+				//}
 				aiRotate(quad_char, dir);
 			}
 			else{
