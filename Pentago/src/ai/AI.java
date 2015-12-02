@@ -89,7 +89,7 @@ public class AI extends Player {
 				Maneuver loss_prevent = _test_board.canWinorLose(op);
 				if(loss_prevent.row>-1&&loss_prevent.column>-1){
 					_con.place(loss_prevent.row, loss_prevent.column, getColor());
-					if(loss_prevent.quad !='z'){
+					if(loss_prevent.quad !='z'&&!_test_board.leadsToLose(loss_prevent.quad,loss_prevent.dir)){
 						aiRotate( loss_prevent.quad, loss_prevent.dir);
 					}
 					else{
@@ -202,7 +202,7 @@ public class AI extends Player {
 			Maneuver loss_prevent = _test_board.canWinorLose(op);
 			if(loss_prevent.row>-1&&loss_prevent.column>-1){
 				_con.place(loss_prevent.row, loss_prevent.column, getColor());
-				if(loss_prevent.quad !='z'){
+				if(loss_prevent.quad !='z'&&!_test_board.leadsToLose(loss_prevent.quad,loss_prevent.dir)){
 					aiRotate( loss_prevent.quad, loss_prevent.dir);
 				}
 				else{
@@ -317,7 +317,7 @@ public class AI extends Player {
 			Maneuver loss_prevent = _test_board.canWinorLose(op);
 			if(loss_prevent.row>-1&&loss_prevent.column>-1){
 				_con.place(loss_prevent.row, loss_prevent.column, getColor());
-				if(loss_prevent.quad !='z'){
+				if(loss_prevent.quad !='z'&&!_test_board.leadsToLose(loss_prevent.quad,loss_prevent.dir)){
 					aiRotate( loss_prevent.quad, loss_prevent.dir);
 				}
 				else{
@@ -413,7 +413,7 @@ public class AI extends Player {
 			Maneuver win_plan = _test_board.plan(getColor());
 			if(win_plan.row>-1&&win_plan.column>-1){
 				_con.place(win_plan.row, win_plan.column, getColor());
-				if(win_plan.quad !='z'){
+				if(win_plan.quad !='z'&&!_test_board.leadsToLose(win_plan.quad,win_plan.dir)){
 					aiRotate(win_plan.quad,win_plan.dir);
 				}
 				else{
