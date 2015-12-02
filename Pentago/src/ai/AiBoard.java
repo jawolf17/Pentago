@@ -333,6 +333,9 @@ public class AiBoard{
 				 if(!isOccupied(i,j)){
 					 place(i,j,op);
 					 if(checker(p,i,j,op)==true){
+						 if(leadsToLose(p.quad,p.dir)){
+							 p.dir = !p.dir;
+						 }
 						 return p;
 					 }
 
@@ -342,7 +345,14 @@ public class AiBoard{
 		 }
 		 return p;
 	 }
-	 
+	 public boolean leadsToLose(char quad,boolean dir){
+		 rotate(quad,dir);
+		 if(isWon()==1){
+			 return false;
+		 }
+		 rotate(quad,!dir);
+		 return true;
+	 }
 	 /**
 	  * Updates the AIBoard to match the current state of the game Board
 	  */

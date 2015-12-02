@@ -40,29 +40,37 @@ public class Board {
 			return false;	
 		}
 		if(row <= 2 && col <= 2){
-			if(row!=1&&col!=1&&neutral_a){
-				neutral_a=false;
+			if(neutral_a){
+				if(!(row==1 && col ==1)){
+					neutral_a=false;
+				}
 			}
 			a[row][col] = p;
 			update('a');
 		}
 		else if(row <= 2 && col >= 3){
-			if(row!=1&&col!=4&&neutral_b){
-				neutral_b=false;
+			if(neutral_b){
+				if(!(row == 1&&col==4)){
+					neutral_b=false;
+				}
 			}
 			b[row][col-3] = p;
 			update('b');
 		}
 		else if(row >=3 && col <= 2){
-			if(row!=4&&col!=1&&neutral_c){
-				neutral_c=false;
+			if(neutral_c){
+				if(!(row == 4 && col == 1)){
+					neutral_c=false;
+				}
 			}
 			c[row-3][col] = p;
 			update('c');
 		}
 		else if(row >=3 && col >= 3){
-			if(row!=4&&col!=4&&neutral_d){
-				neutral_d=false;
+			if(neutral_d){
+				if(!(row==4&&col==4)){
+					neutral_d=false;
+				}
 			}
 			d[row-3][col-3] = p;
 			update('d');
@@ -156,7 +164,7 @@ public class Board {
 		}
 	}
 	public boolean isNeutral(){
-		
+		System.out.println(neutral_a || neutral_b || neutral_c || neutral_d);
 		return neutral_a || neutral_b || neutral_c || neutral_d;
 	}
 	/**

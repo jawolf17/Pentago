@@ -46,7 +46,8 @@ public class AI extends Player {
 		    		break;
 		    		case "medium": turnMed();
 		    		break;
-		    		case "hard":
+		    		case "hard": turnHard();
+		    		break;
 		    		default: turnEasy();
 				}
 			}
@@ -54,9 +55,95 @@ public class AI extends Player {
 	     t.schedule(task, delay);
 		}
 	
-	
 	private void  turnEasy(){
 		System.out.println("Turn Easy");
+		Boolean turnTaken = false;
+		Maneuver win_result = _test_board.canWinorLose(getColor());
+		//Winning placement check
+		if(win_result.row>-1&&win_result.column>-1){
+			Random r = new Random();
+			if(r.nextInt(100)>30){
+				System.out.println("Win");
+				_con.place(win_result.row,win_result.column,getColor());
+				if(win_result.quad!='z'){
+					 aiRotate(win_result.quad, win_result.dir);
+				}
+				else{
+					_con.dummyRotate();
+				}
+				turnTaken=true;
+			}
+		}
+		//Prevent D
+		if(!turnTaken){
+			Random r = new Random();
+			if(r.nextInt(100)>30){
+				System.out.println("Loss");
+				int op;
+				if(getColor() == 1){
+					op = 2;
+				}
+				else{
+					op = 1;
+				}
+				Maneuver loss_prevent = _test_board.canWinorLose(op);
+				if(loss_prevent.row>-1&&loss_prevent.column>-1){
+					_con.place(loss_prevent.row, loss_prevent.column, getColor());
+					if(loss_prevent.quad !='z'){
+						aiRotate( loss_prevent.quad, loss_prevent.dir);
+					}
+					else{
+						_con.dummyRotate();
+					}
+					turnTaken = true;
+				}
+			}
+		}
+		//Random Placement
+		System.out.println("Random");
+		Random r = new Random();
+		while(!turnTaken){
+			int row = r.nextInt(6);
+			int col = r.nextInt(6);
+			if(!_board_actual.isOccupied(row, col)){
+				_con.place(row, col, getColor());
+				turnTaken=true;
+			}
+		}
+			if(!_board_actual.isNeutral()){
+				
+				char quad_char = 'z';
+				boolean dir = false;
+				while(_test_board.leadsToLose(quad_char,dir)==true){
+					int quad_int = r.nextInt(4);
+					int quadr_dir = r.nextInt(2);
+					quad_char='a';
+					switch(quad_int){
+						case 0: quad_char = 'a';
+						break;
+						case 1: quad_char = 'b';
+						break;
+						case 2: quad_char = 'c';
+						break;
+						case 3: quad_char = 'd';
+						break;
+					}
+						if(quadr_dir==0){
+							dir = true;
+						}
+						else{
+							dir = false;
+						}
+				}
+				aiRotate(quad_char, dir);
+			}
+			else{
+				_con.dummyRotate();
+			}
+	}
+	
+	private void  turnMed(){
+		System.out.println("Turn Med");
 		Boolean turnTaken = false;
 		Maneuver win_result = _test_board.canWinorLose(getColor());
 		//Winning placement check
@@ -106,33 +193,39 @@ public class AI extends Player {
 				}
 			}
 				if(!_board_actual.isNeutral()){
-					int quad_int = r.nextInt(4);
-					int quadr_dir = r.nextInt(2);
-					char quad_char='a';
-					switch(quad_int){
-						case 0: quad_char = 'a';
-						break;
-						case 1: quad_char = 'b';
-						break;
-						case 2: quad_char = 'c';
-						break;
-						case 3: quad_char = 'd';
-						break;
+					
+					char quad_char = 'z';
+					boolean dir = false;
+					while(_test_board.leadsToLose(quad_char,dir)==true){
+						int quad_int = r.nextInt(4);
+						int quadr_dir = r.nextInt(2);
+						quad_char='a';
+						switch(quad_int){
+							case 0: quad_char = 'a';
+							break;
+							case 1: quad_char = 'b';
+							break;
+							case 2: quad_char = 'c';
+							break;
+							case 3: quad_char = 'd';
+							break;
+						}
+							if(quadr_dir==0){
+								dir = true;
+							}
+							else{
+								dir = false;
+							}
 					}
-						if(quadr_dir==0){
-							aiRotate(quad_char, false);
-						}
-						else{
-							aiRotate(quad_char,true);
-						}
+					aiRotate(quad_char, dir);
 				}
 				else{
 					_con.dummyRotate();
 				}
-			}
 		}
-	private void  turnMed(){
-		System.out.println("Turn MED");
+	}
+	private void  turnHard(){
+		System.out.println("Turn Hard");
 		Boolean turnTaken = false;
 		Maneuver win_result = _test_board.canWinorLose(getColor());
 		//Winning placement check
@@ -217,25 +310,31 @@ public class AI extends Player {
 				}
 			}
 				if(!_board_actual.isNeutral()){
-					int quad_int = r.nextInt(4);
-					int quadr_dir = r.nextInt(2);
-					char quad_char='a';
-					switch(quad_int){
-						case 0: quad_char = 'a';
-						break;
-						case 1: quad_char = 'b';
-						break;
-						case 2: quad_char = 'c';
-						break;
-						case 3: quad_char = 'd';
-						break;
+					
+					char quad_char = 'z';
+					boolean dir = false;
+					while(_test_board.leadsToLose(quad_char,dir)==true){
+						int quad_int = r.nextInt(4);
+						int quadr_dir = r.nextInt(2);
+						quad_char='a';
+						switch(quad_int){
+							case 0: quad_char = 'a';
+							break;
+							case 1: quad_char = 'b';
+							break;
+							case 2: quad_char = 'c';
+							break;
+							case 3: quad_char = 'd';
+							break;
+						}
+							if(quadr_dir==0){
+								dir = true;
+							}
+							else{
+								dir = false;
+							}
 					}
-						if(quadr_dir==0){
-							aiRotate(quad_char, false);
-						}
-						else{
-							aiRotate(quad_char,true);
-						}
+					aiRotate(quad_char, dir);
 				}
 				else{
 					_con.dummyRotate();
