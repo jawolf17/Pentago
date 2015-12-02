@@ -23,6 +23,7 @@ public class NiceMenu {
 	private String _scale;
 
 	public NiceMenu(Controller c){
+		_scale="medium";
 		_cont=c;
 		try {
 			UIManager.setLookAndFeel("javax.swing.plaf.nimbus.NimbusLookAndFeel");
@@ -83,7 +84,7 @@ public class NiceMenu {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				String diff = aiSelect.getItemAt(aiSelect.getSelectedIndex());	
-				_cont.createGame("You","CPU"+diff);
+				_cont.createGame("You","CPU"+diff,_scale);
 				_frame.dispose();	
 			}
 			
@@ -134,7 +135,7 @@ public class NiceMenu {
 		play.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				_cont.createGame(player1.getText(),player2.getText());
+				_cont.createGame(player1.getText(),player2.getText(),_scale);
 				_frame.dispose();
 			}
 			
@@ -181,7 +182,7 @@ public class NiceMenu {
 		set.addActionListener(new ActionListener(){
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				_scale = scale.getItemAt(scale.getSelectedIndex());
+				_scale = scale.getItemAt(scale.getSelectedIndex()).toLowerCase();
 				
 			}
 			

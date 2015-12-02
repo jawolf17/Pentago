@@ -88,7 +88,7 @@ class ButtonFrame extends JFrame {
             public void actionPerformed(ActionEvent e) {
                // !! ButtonFrame bf = new ButtonFrame();
                if ("Submit".equals(e.getActionCommand())) {
-            	   con.createGame(getPlayerOneName(),getPlayerTwoName());
+            	   con.createGame(getPlayerOneName(),getPlayerTwoName(),"medium");
             	   f.dispose();
                   
                }

@@ -58,11 +58,11 @@ public class Controller {
 	 * @param name1 - the name of player 1
 	 * @param name2 - the name of player 2
 	 */
-	public void createGame(String name1, String name2){
+	public void createGame(String name1, String name2,String size){
 		PlayerOneName = name1;
 		PlayerTwoName = name2;
 		game = new Game(name1,name2,this);
-		GUI = new Gui(this);
+		GUI = new Gui(this,size);
 
 	}
 	
