@@ -326,6 +326,7 @@ public class Gui{
 			    	}
 				}
 			}
+			endTurn.setEnabled(cont.isNeutral());
 			boardGui.revalidate();
 			boardGui.repaint();
 			
